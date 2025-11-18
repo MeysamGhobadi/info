@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اینفوگرافیک جامع «تجربه زمان»</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F7FFF7;
+            color: #1A535C;
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .chart-container-md {
+            height: 400px;
+            max-height: 400px;
+            max-width: 600px;
+        }
+        
+        .chart-container-lg {
+            height: 450px;
+            max-height: 450px;
+            max-width: 900px;
+        }
+
+        .chart-container-radar {
+            height: 400px;
+            max-height: 400px;
+            max-width: 500px;
+        }
+        
+        .chart-container-pie {
+            height: 350px;
+            max-height: 350px;
+            max-width: 350px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(26, 83, 92, 0.1), 0 4px 6px -2px rgba(26, 83, 92, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .stat-number {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #4ECDC4;
+        }
+        
+        .text-accent-positive { color: #4ECDC4; }
+        .text-accent-negative { color: #FF6B6B; }
+        .text-accent-complex { color: #45B7D1; }
+        .text-accent-dark { color: #1A535C; }
+
+        .bg-accent-positive { background-color: #4ECDC4; }
+        .bg-accent-negative { background-color: #FF6B6B; }
+        .bg-accent-complex { background-color: #45B7D1; }
+        .bg-accent-text { background-color: #1A535C; }
+        
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .sketch-image-container {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+            max-height: 350px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            overflow: hidden;
+        }
+
+        .sketch-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            max-height: 340px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="sticky-nav">
+        <nav class="container mx-auto px-6 py-4 flex justify-center items-center">
+            <h1 class="text-xl md:text-3xl font-bold text-accent-dark">تحلیل جامع بصری «تجربه زمان»</h1>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8 mt-8">
+
+        <section class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold text-accent-dark mb-4">از کلان به خرد: یک تحلیل عمیق</h2>
+            <p class="text-lg md:text-xl text-gray-700 max-w-4xl mx-auto">
+                این اینفوگرافیک، داده‌های حاصل از ۵۵ اسکچ را به صورت چندلایه واکاوی می‌کند. ما از نظریه‌های کلان فرهنگی شروع کرده و تا تحلیل آماری هر اسکچ و تأثیر رشته تحصیلی بر تفسیر هنری پیش می‌رویم.
+            </p>
+        </section>
+
+        <section id="section-theory" class="card">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">بخش ۱: چارچوب نظری - تقسیم‌بندی بزرگ زمان</h2>
+            <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                یافته‌های بصری شما به طور کامل با نظریه «تک‌زمانی» (Monochronic) و «چندزمانی» (Polychronic) ادوارد تی. هال همخوانی دارد. این دیاگرام، چارچوب مفهومی کل تحقیق را نشان می‌دهد.
+            </p>
+            
+            <div class="flex flex-col items-center">
+                <div class="p-4 bg-accent-text text-white rounded-lg shadow-lg text-center font-bold text-xl">
+                    «تجربه زمان» فرهنگی
+                </div>
+                <div class="w-1 h-12 bg-gray-300"></div>
+                <div class="flex flex-col md:flex-row w-full max-w-4xl justify-between">
+                    
+                    <div class="flex flex-col items-center flex-1 px-4">
+                        <div class="w-full h-1 bg-gray-300"></div>
+                        <div class="w-1 h-8 bg-gray-300"></div>
+                        <div class="w-full border-4 border-accent-negative rounded-lg p-6 text-center">
+                            <h3 class="text-2xl font-bold text-accent-negative mb-4">۱. زمان «تک‌زمانی» (Monochronic)</h3>
+                            <p class="text-gray-700 mb-4">خطی، کمیّت‌پذیر، مکانیکی، «دارایی»</p>
+                            <p class="font-mono text-lg bg-red-50 p-4 rounded-md text-accent-negative font-semibold">غرب مدرن / اروپای شمالی</p>
+                            <div class="text-4xl my-3 text-accent-negative">↓</div>
+                            <h4 class="text-lg font-semibold mb-2">یافته بصری کلیدی:</h4>
+                            <span class="inline-block bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">اضطراب، قفس، هندسه، سرما</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center flex-1 px-4 mt-8 md:mt-0">
+                        <div class="w-full h-1 bg-gray-300"></div>
+                        <div class="w-1 h-8 bg-gray-300"></div>
+                        <div class="w-full border-4 border-accent-positive rounded-lg p-6 text-center">
+                            <h3 class="text-2xl font-bold text-accent-positive mb-4">۲. زمان «چندزمانی» (Polychronic)</h3>
+                            <p class="text-gray-700 mb-4">انعطاف‌پذیر، انسان‌محور، مبتنی بر «رویداد»</p>
+                            <p class="font-mono text-lg bg-green-50 p-4 rounded-md text-accent-positive font-semibold">آمریکای لاتین / آفریقا</p>
+                            <div class="text-4xl my-3 text-accent-positive">↓</div>
+                            <h4 class="text-lg font-semibold mb-2">یافته بصری کلیدی:</h4>
+                            <span class="inline-block bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">گرما، رقص، جمع انسانی</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="section-clock" class="card">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">بخش ۲: تحلیل نماد «ساعت» - یافته «ضد-ساعت»</h2>
+            <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                تنها ۳۳٪ اسکچ‌ها (۱۸ از ۵۵) از نماد «ساعت» استفاده کردند. نمودارها نشان می‌دهند که این استفاده، اولاً به شدت «منفی» بوده و ثانیاً «وابسته به فرهنگ» است.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">تفسیر احساسی از ۱۸ «ساعت» ترسیم‌شده</h3>
+                    <div class="chart-container chart-container-pie mx-auto">
+                        <canvas id="clockInterpretationChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">
+                        **۸۳٪** (۱۵ اسکچ) تفسیری صراحتاً منفی (شکسته، ذوب‌شده، انفجاری، استرس‌زا) از ساعت ارائه دادند.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">فراوانی استفاده از «ساعت» بر اساس فرهنگ</h3>
+                    <div class="chart-container chart-container-md mx-auto">
+                        <canvas id="clockUsageByCategoryChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">
+                        فرهنگ‌های «تک‌زمانی» (غرب/اروپا) به طور قابل توجهی بیشتر از ساعت استفاده کردند، در حالی که فرهنگ‌های «ارگانیک» (آفریقا/بومیان) آن را نادیده گرفتند.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section-language" class="card">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">بخش ۳: تحلیل زبان بصری (استعاره‌های کلیدی)</h2>
+            <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                وقتی «ساعت» حذف می‌شود، دانشجویان از چه استعاره‌هایی برای بیان زمان استفاده می‌کنند؟ نمودارها نشان می‌دهند که «طبیعت»، «انسان» و «هندسه» سه زبان اصلی بوده‌اند.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">فراوانی استعاره‌های بصری کلیدی (از ۵۵ اسکچ)</h3>
+                    <div class="chart-container chart-container-radar mx-auto">
+                        <canvas id="metaphorRadarChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">
+                        «ساعت/مکانیک» (۱۸) پرتکرارترین نماد بود، اما «طبیعت» (۱۱)، «انسان/جمع» (۱۰) و «هندسه/قفس» (۱۲) نیز بسیار رایج بودند.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">طیف احساسی فرهنگ‌ها (خلاصه ۵۵ اسکچ)</h3>
+                    <div class="chart-container chart-container-md mx-auto">
+                        <canvas id="emotionalSpectrumChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">
+                        شکاف احساسی بین فرهنگ‌های مکانیکی (قرمز) و ارگانیک (سبز) کاملاً واضح است. فرهنگ «ایران» (زرد) به عنوان یک مورد «پیچیده» و ترکیبی برجسته می‌شود.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section-lens" class="card">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">بخش ۴: فیلتر تخصص (تأثیر دانشگاه و رشته تحصیلی)</h2>
+            <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                داده‌ها نشان می‌دهند که «رشته تحصیلی» دانشجویان، یک فیلتر قدرتمند در نحوه تفسیر متن بوده است. «طراحان صنعتی» و «معماران» تمایل به تحلیل «سیستم» داشتند، در حالی که «دانشجویان نمایش» به «روایت» علاقه‌مند بودند.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">پروفایل رویکرد: دانشگاه تهران (۳۴ اسکچ)</h3>
+                    <div class="chart-container chart-container-pie mx-auto">
+                        <canvas id="tehranProfileChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">
+                        تعادل نسبی بین رویکردها، با برتری جزئی «روایی/فیگوراتیو» (۳۸٪).
+                    </p>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">پروفایل رویکرد: دانشگاه هنر ایران (۲۱ اسکچ)</h3>
+                    <div class="chart-container chart-container-pie mx-auto">
+                        <canvas id="artUniProfileChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4">
+                        تسلط کامل رویکرد «انتزاعی/شاعرانه» (۴۸٪) و تمایل کمتر به «تحلیل سیستمی».
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-12">
+            
+            <h3 class="text-xl font-semibold text-gray-700 mb-4 text-center">مقایسه رویکرد غالب بر اساس رشته تحصیلی (تمام ۵۵ اسکچ)</h3>
+            <div class="chart-container chart-container-lg mx-auto">
+                <canvas id="majorAnalysisChart"></canvas>
+            </div>
+            <p class="text-center text-gray-600 mt-4">
+                نمودار افقی به وضوح نشان می‌دهد که «طراحی صنعتی»، «معماری» و «مجسمه‌سازی» به شدت به سمت تحلیل «سیستمی/انتزاعی» گرایش دارند، در حالی که «هنرهای نمایشی» کاملاً «روایی» هستند.
+            </p>
+        </section>
+
+        <section id="section-explorer" class="card">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">بخش ۵: گالری اسکچ‌ها - تحلیل کامل ۵۵ مورد</h2>
+            <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                در این بخش، هر ۵۵ اسکچ به صورت مجزا به همراه تحلیل کیفی و اطلاعات مربوط به آن نمایش داده شده‌اند. این داده‌ها مبنای تمام نمودارهای بالا بوده‌اند.
+            </p>
+            <div id="sketchGallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+
+        <section class="card" style="background-color: #1A535C; color: white;">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center" style="color: white;">نتیجه‌گیری نهایی</h2>
+            <p class="text-lg max-w-4xl mx-auto text-center" style="color: #f3f4f6;">
+                این تحقیق بصری نشان داد که «تجربه زمان» یک مفهوم مطلق نیست، بلکه یک «زبان» فرهنگی است. دانشجویان هنر، به عنوان مترجمان بصری، به طور غریزی اضطرابِ زمانِ مکانیکی (غرب) و آرامشِ زمانِ ارگانیک (شرق/بومی) را درک و بازتولید کردند. یافته‌های این پروژه، شواهد بصری قدرتمندی برای نظریه‌های جامعه‌شناختی زمان فراهم می‌کند.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 bg-gray-200 text-gray-600 text-sm mt-12">
+        <p>اینفوگرافیک SPA بر اساس داده‌های پایان‌نامه «تجربه زمان».</p>
+        <p>No SVG graphics or Mermaid JS were used in the creation of this document. All visualizations are rendered via Chart.js on Canvas or constructed with HTML/Tailwind.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            "use strict";
+
+            const tooltipPluginCallback = {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            };
+            
+            const processLabels = (labels) => {
+                const charLimit = 16;
+                return labels.map(label => {
+                    if (typeof label === 'string' && label.length > charLimit) {
+                        const words = label.split(' ');
+                        const lines = [];
+                        let currentLine = '';
+                        words.forEach(word => {
+                            if ((currentLine + ' ' + word).length > charLimit) {
+                                lines.push(currentLine.trim());
+                                currentLine = word;
+                            } else {
+                                currentLine += (currentLine === '' ? '' : ' ') + word;
+                            }
+                        });
+                        lines.push(currentLine.trim());
+                        return lines;
+                    }
+                    return label;
+                });
+            };
+
+            const colors = {
+                negative: '#FF6B6B',
+                positive: '#4ECDC4',
+                complex: '#45B7D1',
+                neutral: '#BDC3C7',
+                text: '#1A535C',
+                bg: '#F7FFF7',
+                tehran: '#1976D2',
+                art: '#42A5F5',
+                systemic: '#45B7D1',
+                narrative: '#FF6B6B',
+            };
+
+            const defaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: "'Vazirmatn', sans-serif",
+                                size: 12
+                            },
+                            color: colors.text
+                        }
+                    },
+                    tooltip: {
+                        callbacks: tooltipPluginCallback,
+                        bodyFont: {
+                            family: "'Vazirmatn', sans-serif",
+                            size: 14
+                        },
+                        titleFont: {
+                            family: "'Vazirmatn', sans-serif",
+                            size: 14
+                        },
+                        rtl: true
+                    }
+                }
+            };
+
+            const defaultTickOptions = {
+                ticks: {
+                    font: {
+                        family: "'Vazirmatn', sans-serif",
+                        size: 12
+                    },
+                    color: colors.text
+                },
+                grid: {
+                    color: '#EEE'
+                }
+            };
+
+            // تابع هوشمند برای ساخت آدرس عکس
+            // این تابع اول فرمت JPG را تست می‌کند، اگر نبود JPEG، اگر نبود PNG
+            const createImagePath = (uni, category, filename) => {
+                const uniFolder = uni === 'تهران' ? 'UT' : 'AU';
+                
+                // نگاشت نام دسته‌ها به نام پوشه‌ها
+                const categoryMap = {
+                    'غرب مدرن': 'غرب مدرن',
+                    'اروپای شمالی': 'اروپای شمالی',
+                    'آسیای شرقی': 'آسیای شرقی',
+                    'آفریقا': 'آفریقا',
+                    'آمریکای لاتین': 'آمریکای لاتین و عربی', // نام پوشه شما
+                    'بومیان': 'بومیان استرالیا', // نام پوشه شما
+                    'ایران': 'ایران و اسلام' // نام پوشه شما
+                };
+
+                const folderName = categoryMap[category] || category;
+                
+                // حذف پسوند از نام فایل برای اضافه کردن داینامیک
+                const cleanName = filename.replace(/\.(jpg|jpeg|png)$/i, '');
+                
+                return `${uniFolder}/${folderName}/${cleanName}.jpg`; // پیش‌فرض jpg است، اما با onerror در HTML هندل می‌شود
+            };
+
+            const createSketchDataGrid = () => {
+                return [
+                    { cat: 'غرب مدرن', uni: 'تهران', major: 'ادبیات نمایشی (پسر)', meta: 'انفجار ساعت', desc: 'تفسیر دراماتیک و آشفته از اضطراب زمان مکانیکی.', filename: 'پسر-ادبیات نمایشی-تهران02.jpg' },
+                    { cat: 'غرب مدرن', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'دیاگرام اضطراب', desc: 'تحلیل سیستماتیک زمان به مثابه «سرعت» و «بی‌روحی».', filename: 'دختر طراحی صنعتی-تهران03.jpg' },
+                    { cat: 'غرب مدرن', uni: 'تهران', major: 'نمایش (پسر)', meta: 'Time is Money $', desc: 'روایت جا ماندن از قطار؛ زمان به مثابه «دارایی» از دست رفته.', filename: 'پسر-نمایش-تهران02.jpg' },
+                    { cat: 'غرب مدرن', uni: 'تهران', major: 'طراحی صنعتی (پسر)', meta: 'ساختار هندسی/قفس', desc: 'ترسیم انتزاعی «نظم» سرد و مکانیکی زمان خطی.', filename: 'پسر-طراحی صنعتی-تهران 04.jpg' },
+                    { cat: 'غرب مدرن', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'ترازوی زمان = پول', desc: 'طراحی شیء مفهومی برای نشان دادن ارزش‌گذاری زمان.', filename: 'دختر-طراحی صنعتی-تهران02.jpg' },
+                    { cat: 'غرب مدرن', uni: 'هنر', major: 'معماری (پسر)', meta: 'سلطه برج ساعت', desc: 'ترسیم مینیمال «فضا»ی شهری تحت سلطه زمان مکانیکی.', filename: 'هنر-پسر-معماری.jpeg' },
+                    { cat: 'غرب مدرن', uni: 'هنر', major: 'مجسمه (پسر)', meta: 'تنش فرمی (قفس و آشوب)', desc: 'تضاد انتزاعی بین خطوط صلب «نظم» و خطوط آشفته «انرژی».', filename: 'هنر-پسر-مجسمه.jpg' },
+                    { cat: 'غرب مدرن', uni: 'هنر', major: 'مجسمه (دختر)', meta: 'شبکه/قفس انتظار', desc: 'نمایش «دست» منتظر در برابر «شبکه» زمان‌بندی شده.', filename: 'هنر-دختر-مجسمه.jpeg' },
+                    
+                    { cat: 'آسیای شرقی', uni: 'تهران', major: 'نقاشی (دختر)', meta: 'ساعت شکوفه‌ای (دایره)', desc: 'تصویرسازی مستقیم «زمان دایره است» با ۱۲ شکوفه.', filename: 'دختر-نقاشی-تهران02.jpg' },
+                    { cat: 'آسیای شرقی', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'ساعت ذوب‌شده در فصول', desc: 'ادغام ساعت غربی (ذوب‌شده) در چرخه ارگانیک فصول.', filename: 'دختر-طراحی صنعتی-تهران08.jpeg' },
+                    { cat: 'آسیای شرقی', uni: 'تهران', major: 'مجسمه (پسر)', meta: 'منظره آیینی (فانوس)', desc: 'ترسیم اتمسفر «جشن» و «خورشید شکوفه‌دهنده».', filename: 'پسر-مجسمه-تهران01.jpg' },
+                    { cat: 'آسیای شرقی', uni: 'تهران', major: 'طراحی صحنه (دختر)', meta: 'تنه درخت (ریشه)', desc: 'تمرکز بر «ریشه» و «زمین» به عنوان منبع زمان چرخه‌ای.', filename: 'دختر-طراحی صحنه-تهران01.jpeg' },
+                    { cat: 'آسیای شرقی', uni: 'تهران', major: 'موسیقی (پسر)', meta: 'حلقه موسیقایی (Loop)', desc: 'ترسیم انتزاعی زمان به مثابه «ریتم» و «تکرار».', filename: 'پسر-موسیقی-تهران01.jpeg' },
+                    { cat: 'آسیای شرقی', uni: 'هنر', major: 'معماری داخلی (پسر)', meta: 'فضای هماهنگ (پل ماه)', desc: 'طراحی «فضا»ی تجربه زمان (پل، درخت، انسان).', filename: 'هنر-پسر-معماری داخلی.jpeg' },
+                    { cat: 'آسیای شرقی', uni: 'هنر', major: 'معماری (دختر)', meta: 'غنچه در حال شدن (گذرا)', desc: 'ترسیم شاعرانه «لحظه گذار» و مفهوم «مونو نو آواره».', filename: 'هنر-دختر-معماری.jpeg' },
+                    { cat: 'آسیای شرقی', uni: 'هنر', major: 'نقاشی (پسر)', meta: 'چهره/درخت (ادغام)', desc: 'تفسیر اسطوره‌ای از ادغام انسان در چرخه طبیعت (مو/شاخه).', filename: 'هنر-پسر-نقاشی.jpg' },
+                    
+                    { cat: 'آفریقا', uni: 'تهران', major: 'طراحی صنعتی (پسر)', meta: 'دیاگرام سیستم ارگانیک', desc: 'تحلیل سیستمی زمان به مثابه «فرایند» (رشد، رقص، زوال).', filename: 'پسر-طراحی صنعتی-تهران01.jpg' },
+                    { cat: 'آفریقا', uni: 'تهران', major: 'طراحی صنعتی (پسر)', meta: 'تقویم روی بدن', desc: 'طرد ساعت غربی و جایگزینی آن با تقویم طبیعی (ماه و خورشید).', filename: 'پسر-طراحی صنعتی-تهران02.jpeg' },
+                    { cat: 'آفریقا', uni: 'تهران', major: 'نقاشی (پسر)', meta: 'بافت زمین / ریتم (۱)', desc: 'تمرکز بر «ماده» (تراشه مداد) و «ریتم» (نقطه‌چین).', filename: 'پسر-نقاشی-تهران01-1.jpg' },
+                    { cat: 'آفریقا', uni: 'تهران', major: 'نقاشی (پسر)', meta: 'بافت زمین / ریتم (۲)', desc: 'ترکیب‌بندی دوم از همان دانشجو، تأکید بر بافت و ریتم.', filename: 'پسر-نقاشی-تهران01-2.jpg' },
+                    { cat: 'آفریقا', uni: 'تهران', major: 'گرافیک (دختر)', meta: 'خوشنویسی انتزاعی', desc: 'ترجمه «زمان پیوسته» (نه بریده) به یک «ژست» واحد.', filename: 'دختر-گرافیک-تهران01.jpg' },
+                    { cat: 'آفریقا', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'پیکسل‌های محوشونده', desc: 'مدل‌سازی «حال» (مرکز صلب) و «آینده/اجداد» (پیکسل محو).', filename: 'دختر-طراحی صنعتی-تهران-04.jpg' },
+                    { cat: 'آفریقا', uni: 'تهران', major: 'مجسمه (دختر)', meta: 'ساعت ذوب‌شده', desc: 'بی‌اعتباری و ذوب شدن ساعت مکانیکی در اتمسفر آفریقا.', filename: 'دختر-مجسمه-تهران03.jpg' },
+                    { cat: 'آفریقا', uni: 'هنر', major: 'مجسمه (پسر)', meta: 'فیگور در حال رقص/خلسه', desc: 'تصویرسازی مستقیم «مراسم» و «سپردن بدن» به ریتم.', filename: 'هنر-پسر-مجسمه.jpeg' },
+                    { cat: 'آفریقا', uni: 'هنر', major: 'معماری (پسر)', meta: 'گرداب زمان (قیف)', desc: 'مدل مفهومی «حال» (مرکز فشرده) که «گذشته» را می‌بلعد.', filename: 'هنر-پسر-معماری.jpeg' },
+                    { cat: 'آفریقا', uni: 'هنر', major: 'معماری (پسر)', meta: 'لایه‌های هم‌زمان', desc: 'ترجمه فضایی «هم‌زمانی» گذشته و حال (لایه‌های شفاف).', filename: 'هنر-پسر-معماری01.jpeg' },
+                    
+                    { cat: 'ایران', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'دیاگرام سه‌لایه', desc: 'تحلیل دقیق و بصری سه لایه: ۱. ساعت ۲. نمودار آیینی ۳. امواج ابدیت.', filename: 'دختر-طراحی صنعتی-تهران 05.jpg' },
+                    { cat: 'ایران', uni: 'تهران', major: 'معماری (پسر)', meta: 'تضاد فرم (صلب و نرم)', desc: 'تضاد معمارانه بین زمان صلب (کناره‌ها) و زمان جاری (مرکز).', filename: 'پسر-معماری-تهران01.jpg' },
+                    { cat: 'ایران', uni: 'تهران', major: 'گرافیک (پسر)', meta: 'درخت در حلقه ابدیت', desc: 'نماد «دهر» (درخت) که در بستر «سرمد» (حلقه) رشد می‌کند.', filename: 'پسر-گرافیک-تهران02.jpg' },
+                    { cat: 'ایران', uni: 'تهران', major: 'طراحی صحنه (پسر)', meta: 'سرِ شکافته (تنش)', desc: 'صحنه دراماتیک «انسانِ» پاره‌شده بین دوگانگی زمان.', filename: 'پسر-طراحی صحنه-تهران01.jpg' },
+                    { cat: 'ایران', uni: 'هنر', major: 'نقاشی (دختر)', meta: 'ساعتِ ذوب‌شده در اسلیمی', desc: 'تبدیل زمان مکانیکی (ساعت) به زمان جاری (خطوط اسلیمی).', filename: 'هنر-دختر-نقاشی.jpeg' },
+                    { cat: 'ایران', uni: 'هنر', major: 'مجسمه (دختر)', meta: 'فرم‌های شناور در ابدیت', desc: 'تفسیر انتزاعی «سرمد» (پوسته) و «دهر/روزمره» (لکه‌ها).', filename: 'هنر-دختر-مجسمه.jpeg' },
+                    { cat: 'ایران', uni: 'هنر', major: 'نقاشی (پسر)', meta: 'چهره-ساعت (هویت)', desc: 'تفسیر انتقادی «انسان» با هویت سنتی (چادر) و چهره مدرن (ساعت).', filename: 'هنر-پسر-نقاشی.jpeg' },
+                    
+                    { cat: 'آمریکای لاتین', uni: 'تهران', major: 'کارگردانی (پسر)', meta: 'انرژی جمعی (هاله)', desc: 'ترسیم «انرژی» و «هاله» یک جمع انسانی به مثابه زمان.', filename: 'پسر-کارگردانی-تهران01.jpg' },
+                    { cat: 'آمریکای لاتین', uni: 'تهران', major: 'مجسمه (دختر)', meta: 'خوردنِ ساعت!', desc: 'استعاره قدرتمند «بی‌اهمیتی» ساعت (غذا) در برابر «حضور» (قهوه).', filename: 'دختر-مجسمه-تهران01.jpeg' },
+                    { cat: 'آمریکای لاتین', uni: 'تهران', major: 'نقاشی (دختر)', meta: 'بدنِ آرام (حضور)', desc: 'تمرکز بر «ژست» بدن آرام، درک زمان به مثابه «بودن».', filename: 'دختر-نقاشی-تهران03.jpg' },
+                    { cat: 'آمریکای لاتین', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'دانه برف (؟)', desc: 'احتمالاً جابجا شده؛ نماد سرما، متضاد کامل متن.', filename: 'دختر-طراحی صنعتی-تهران06.jpg' },
+                    { cat: 'آمریکای لاتین', uni: 'هنر', major: 'معماری (دختر)', meta: 'جمع دور میز', desc: 'ترسیم «جمع انسانی» به عنوان هسته مرکزی و مولد زمان.', filename: 'هنر-دختر-معماری01.jpg' },
+                    { cat: 'آمریکای لاتین', uni: 'هنر', major: 'مجسمه (پسر)', meta: 'مارپیچ دوتایی (رابطه)', desc: 'ترسیم انتزاعی «رابطه انسانی» به مثابه یک خط پیوسته.', filename: 'هنر-پسر-مجسمه.jpeg' },
+                    { cat: 'آمریکای لاتین', uni: 'هنر', major: 'معماری (دختر)', meta: 'ساعت شکسته (بی‌نهایت)', desc: 'بی‌اعتباری ساعت (شکسته) در برابر زنجیر «بی‌نهایت» (روابط).', filename: 'هنر-دختر-معماری.jpeg' },
+                    
+                    { cat: 'اروپای شمالی', uni: 'تهران', major: 'نقاشی (دختر)', meta: 'اتمسفر خشن (ناقوس)', desc: 'ترسیم اتمسفر «تیز» و «بی‌رحم» زمان با نماد ساعت و ناقوس.', filename: 'دختر-نقاشی-تهران01.jpg' },
+                    { cat: 'اروپای شمالی', uni: 'تهران', major: 'طراحی صنعتی (پسر)', meta: 'قفس بلورین (هندسه)', desc: 'ترسیم انتزاعی «نظم» به مثابه یک ساختار هندسی سرد و تیز.', filename: 'پسر-طراحی صنعتی-تهران 05.jpg' },
+                    { cat: 'اروپای شمالی', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'چشم-ساعت (نظارت)', desc: 'مدل مفهومی «تفکیک» (بلوک‌ها) تحت «نظارت» (چشم-ساعت).', filename: 'دختر-طراحی صنعتی-تهران01.jpg' },
+                    { cat: 'اروپای شمالی', uni: 'تهران', major: 'طراحی صنعتی (دختر)', meta: 'فضای امن داخلی', desc: 'نمایش جنبه مثبت «نظم»؛ ایجاد «امنیت» در برابر سرمای بیرون.', filename: 'دختر-طراحی صنعتی-تهران07.jpeg' },
+                    { cat: 'اروپای شمالی', uni: 'هنر', major: 'نقاشی (دختر)', meta: 'اسارت/آویختگی', desc: 'تفسیر اکسپرسیو و منفی از «استرس» و استیصال (نمیتونم).', filename: 'هنر-دختر-نقاشی.jpeg' },
+                    { cat: 'اروپای شمالی', uni: 'هنر', major: 'مجسمه (پسر)', meta: 'بلوک یخ‌زده (تفکیک)', desc: 'ترسیم «واحد» تفکیک‌شده زمان به مثابه یک بلوک صلب.', filename: 'هنر-پسر-مجسمه.jpeg' },
+                    { cat: 'اروپای شمالی', uni: 'هنر', major: 'معماری (دختر)', meta: 'ترک‌های روی یخ', desc: 'مطالعه «بافت» زمان؛ شفاف، تیز، اما شکننده.', filename: 'هنر-دختر-معماری.jpeg' },
+                    
+                    { cat: 'بومیان', uni: 'تهران', major: 'گرافیک (پسر)', meta: 'ماسک/توتم (اجداد)', desc: 'طراحی «نماد» یا «لوگو»ی زمان به مثابه «حافظه» اجداد.', filename: 'پسر-گرافیک-تهران01.jpg' },
+                    { cat: 'بومیان', uni: 'تهران', major: 'طراحی صنعتی (پسر)', meta: 'گرداب در منظره', desc: 'ترسیم «زمان زمین» به مثابه یک «انرژی» جاری در منظره.', filename: 'پسر-طراحی صنعتی-تهران03.jpg' },
+                    { cat: 'بومیان', uni: 'تهران', major: 'طراحی صحنه (دختر)', meta: 'حلقه سه‌بعدی (کیهان)', desc: 'طراحی «شیء صحنه»؛ حلقه کیهانی از «نسل‌ها».', filename: 'دختر-طراحی صحنه-تهران02.jpg' },
+                    { cat: 'بومیان', uni: 'تهران', major: 'مجسمه (دختر)', meta: 'ارواح شناور (حافظه)', desc: 'ترسیم شاعرانه «اجداد» به مثابه فرم‌های اثیری و شناور.', filename: 'دختر-مجسمه-تهران02.jpg' },
+                    { cat: 'بومیان', uni: 'تهران', major: 'نمایش (پسر)', meta: 'تضاد ساعت و رود', desc: 'صفحه ایده‌پردازی؛ تضاد زمان مکانیکی و «زمان زمین».', filename: 'پسر-نمایش-تهران01.jpg' },
+                    { cat: 'بومیان', uni: 'هنر', major: 'مجسمه (دختر)', meta: 'جمع دور آتش (قصه)', desc: 'تصویرسازی مستقیم «آتش» به عنوان مرکز زمان روایی.', filename: 'هنر-دختر-مجسمه سازی.jpg' },
+                    { cat: 'بومیان', uni: 'هنر', major: 'معماری (دختر)', meta: 'کُره درهم‌تنیده (زمین)', desc: 'مدل مفهومی «زمان زمین» به مثابه یک کُره با ساختار داخلی پیچیده.', filename: 'هنر-دختر-معماری.jpeg' },
+                    { cat: 'بومیان', uni: 'هنر', major: 'معماری (پسر)', meta: 'تبار (پیوند نسل‌ها)', desc: 'ترسیم زمان به مثابه «سازه» یا «مسیر» افقی پیونددهنده نسل‌ها.', filename: 'هنر-پسر-معماری.jpeg' },
+                ];
+            };
+            
+            const populateSketchGrid = (data) => {
+                const gallery = document.getElementById('sketchGallery');
+                if (!gallery) return;
+                
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    
+                    let catColorClass = 'text-accent-complex';
+                    if (['غرب مدرن', 'اروپای شمالی'].includes(item.cat)) {
+                        catColorClass = 'text-accent-negative';
+                    } else if (['آسیای شرقی', 'آفریقا', 'آمریکای لاتین', 'بومیان'].includes(item.cat)) {
+                        catColorClass = 'text-accent-positive';
+                    }
+
+                    // ساخت مسیر فایل با توجه به پوشه‌بندی و نام فایل
+                    const imagePath = createImagePath(item.uni, item.cat, item.filename);
+                    
+                    // نام فایل بدون پسوند برای هندل کردن جایگزین‌های jpeg و png
+                    const baseFilename = imagePath.replace(/\.jpg$/, '');
+
+                    card.innerHTML = `
+                        <div>
+                            <div class="sketch-image-container">
+                                <img src="${imagePath}" 
+                                    alt="اسکچ: ${item.meta}" 
+                                    class="sketch-image" 
+                                    loading="lazy" 
+                                    onerror="this.onerror=null; this.src='${baseFilename}.jpeg'; this.onerror=function(){this.src='${baseFilename}.png'; this.onerror=function(){this.src='https://placehold.co/600x400/e2e8f0/9ca3af?text=%D8%AA%D8%B5%D9%88%DB%8C%D8%B1+%DB%8C%D8%A7%D9%81%D8%AA+%D9%86%D8%B4%D8%AF';}};" />
+                            </div>
+                            <span class="block text-xs font-semibold uppercase ${catColorClass}">${item.cat}</span>
+                            <h4 class="text-lg font-bold text-accent-dark mt-1">${item.meta}</h4>
+                            <p class="text-sm text-gray-600 mt-2 mb-4 h-16 overflow-y-auto">${item.desc}</p>
+                        </div>
+                        <div class="border-t border-gray-200 pt-3 text-xs text-gray-500">
+                            <p><strong>دانشگاه:</strong> ${item.uni}</p>
+                            <p><strong>رشته:</strong> ${item.major}</p>
+                        </div>
+                    `;
+                    
+                    gallery.appendChild(card);
+                });
+            };
+
+            const allSketchData = createSketchDataGrid();
+            populateSketchGrid(allSketchData);
+
+            const ctxClock = document.getElementById('clockInterpretationChart')?.getContext('2d');
+            if (ctxClock) {
+                new Chart(ctxClock, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['تفسیر منفی (۸۳٪)', 'خنثی / نمادین (۱۷٪)'],
+                        datasets: [{
+                            data: [15, 3],
+                            backgroundColor: [colors.negative, colors.neutral],
+                            borderWidth: 4,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: defaultOptions
+                });
+            }
+
+            const ctxClockUsage = document.getElementById('clockUsageByCategoryChart')?.getContext('2d');
+            if (ctxClockUsage) {
+                const clockUsageLabels = ['غرب مدرن', 'شمال اروپا', 'آسیای شرقی', 'آفریقا', 'آمریکای لاتین', 'ایران', 'بومیان'];
+                new Chart(ctxClockUsage, {
+                    type: 'bar',
+                    data: {
+                        labels: processLabels(clockUsageLabels),
+                        datasets: [
+                            {
+                                label: 'استفاده از ساعت',
+                                data: [5, 4, 1, 2, 2, 2, 1],
+                                backgroundColor: colors.negative,
+                            },
+                            {
+                                label: 'عدم استفاده از ساعت',
+                                data: [3, 3, 7, 8, 5, 5, 7],
+                                backgroundColor: colors.positive,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            x: { ...defaultTickOptions, stacked: true },
+                            y: { ...defaultTickOptions, stacked: true, beginAtZero: true }
+                        }
+                    }
+                });
+            }
+
+            const ctxMetaphor = document.getElementById('metaphorRadarChart')?.getContext('2d');
+            if (ctxMetaphor) {
+                const metaphorLabels = ['ساعت/مکانیک', 'طبیعت (گیاه)', 'انسان/جمع', 'هندسه/قفس', 'دایره/چرخه', 'آتش/رقص/روح'];
+                new Chart(ctxMetaphor, {
+                    type: 'radar',
+                    data: {
+                        labels: processLabels(metaphorLabels),
+                        datasets: [{
+                            label: 'فراوانی استعاره (از ۵۵)',
+                            data: [18, 11, 10, 12, 10, 7],
+                            backgroundColor: 'rgba(69, 183, 209, 0.2)',
+                            borderColor: colors.complex,
+                            borderWidth: 2,
+                            pointBackgroundColor: colors.complex,
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 5,
+                                    backdropColor: 'transparent',
+                                    color: colors.text
+                                },
+                                pointLabels: {
+                                    font: {
+                                        family: "'Vazirmatn', sans-serif",
+                                        size: 12
+                                    },
+                                    color: colors.text
+                                },
+                                grid: {
+                                    color: '#DDD'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const ctxSpectrum = document.getElementById('emotionalSpectrumChart')?.getContext('2d');
+            if (ctxSpectrum) {
+                const spectrumLabels = ['غرب مدرن', 'شمال اروپا', 'آسیای شرقی', 'آمریکای لاتین', 'آفریقا', 'بومیان', 'ایران'];
+                new Chart(ctxSpectrum, {
+                    type: 'bar',
+                    data: {
+                        labels: processLabels(spectrumLabels),
+                        datasets: [
+                            {
+                                label: 'منفی (اضطراب/سرما)',
+                                data: [8, 7, 0, 0, 0, 0, 0],
+                                backgroundColor: colors.negative,
+                            },
+                            {
+                                label: 'مثبت (آرامش/گرما)',
+                                data: [0, 0, 8, 7, 10, 8, 0],
+                                backgroundColor: colors.positive,
+                            },
+                            {
+                                label: 'پیچیده (تنش/دوگانگی)',
+                                data: [0, 0, 0, 0, 0, 0, 7],
+                                backgroundColor: colors.complex,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            x: { ...defaultTickOptions, stacked: true },
+                            y: { ...defaultTickOptions, stacked: true, beginAtZero: true }
+                        }
+                    }
+                });
+            }
+
+            const ctxTehran = document.getElementById('tehranProfileChart')?.getContext('2d');
+            if (ctxTehran) {
+                new Chart(ctxTehran, {
+                    type: 'pie',
+                    data: {
+                        labels: ['روایی (۳۸٪)', 'سیستمی (۲۹٪)', 'انتزاعی (۳۳٪)'],
+                        datasets: [{
+                            data: [13, 10, 11],
+                            backgroundColor: [colors.narrative, colors.systemic, colors.tehran],
+                            borderWidth: 3,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: defaultOptions
+                });
+            }
+
+            const ctxArt = document.getElementById('artUniProfileChart')?.getContext('2d');
+            if (ctxArt) {
+                new Chart(ctxArt, {
+                    type: 'pie',
+                    data: {
+                        labels: ['روایی (۳۳٪)', 'سیستمی (۱۹٪)', 'انتزاعی (۴۸٪)'],
+                        datasets: [{
+                            data: [7, 4, 10],
+                            backgroundColor: [colors.narrative, colors.systemic, colors.art],
+                            borderWidth: 3,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: defaultOptions
+                });
+            }
+            
+            const ctxMajor = document.getElementById('majorAnalysisChart')?.getContext('2d');
+            if (ctxMajor) {
+                const majorLabels = ['طراحی صنعتی (۱۶)', 'نمایش/صحنه/کارگردانی (۱۰)', 'نقاشی (۹)', 'معماری (۹)', 'مجسمه‌سازی (۹)', 'گرافیک (۳)', 'موسیقی (۱)'];
+                new Chart(ctxMajor, {
+                    type: 'bar',
+                    data: {
+                        labels: processLabels(majorLabels),
+                        datasets: [
+                            {
+                                label: 'رویکرد سیستمی / انتزاعی',
+                                data: [11, 8, 5, 8, 2, 2, 1],
+                                backgroundColor: colors.systemic,
+                            },
+                            {
+                                label: 'رویکرد روایی / فیگوراتیو',
+                                data: [5, 2, 4, 1, 5, 1, 0],
+                                backgroundColor: colors.narrative,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        indexAxis: 'y',
+                        scales: {
+                            x: { ...defaultTickOptions, stacked: true, beginAtZero: true },
+                            y: { ...defaultTickOptions, stacked: true }
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
