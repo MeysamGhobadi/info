@@ -266,7 +266,7 @@
         <section id="section-explorer" class="card">
             <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">بخش ۵: گالری اسکچ‌ها - تحلیل کامل ۵۵ مورد</h2>
             <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
-                در این بخش، هر ۵۵ اسکچ به صورت مجزا به همراه تحلیل کیفی و اطلاعات مربوط به آن نمایش داده شده‌اند. این داده‌ها مبنای تمام نمودارهای بالا بوده‌اند.
+                در این بخش، هر ۵۵ اسکچ به صورت مجزا به همراه تحلیل کیفی و اطلاعات مربوط به آن نمایش داده شده‌اند.
             </p>
             <div id="sketchGallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             </div>
@@ -379,28 +379,27 @@
                 }
             };
 
-            // تابع هوشمند برای ساخت آدرس عکس
-            // این تابع اول فرمت JPG را تست می‌کند، اگر نبود JPEG، اگر نبود PNG
+            // تابع هوشمند اصلاح‌شده برای یافتن مسیر تصویر
             const createImagePath = (uni, category, filename) => {
                 const uniFolder = uni === 'تهران' ? 'UT' : 'AU';
                 
-                // نگاشت نام دسته‌ها به نام پوشه‌ها
                 const categoryMap = {
                     'غرب مدرن': 'غرب مدرن',
                     'اروپای شمالی': 'اروپای شمالی',
                     'آسیای شرقی': 'آسیای شرقی',
                     'آفریقا': 'آفریقا',
-                    'آمریکای لاتین': 'آمریکای لاتین و عربی', // نام پوشه شما
-                    'بومیان': 'بومیان استرالیا', // نام پوشه شما
-                    'ایران': 'ایران و اسلام' // نام پوشه شما
+                    'آمریکای لاتین': 'آمریکای لاتین و عربی',
+                    'بومیان': 'بومیان استرالیا',
+                    'ایران': 'ایران و اسلام'
                 };
 
                 const folderName = categoryMap[category] || category;
                 
-                // حذف پسوند از نام فایل برای اضافه کردن داینامیک
+                // پاکسازی نام فایل از پسوند برای پردازش‌های بعدی
                 const cleanName = filename.replace(/\.(jpg|jpeg|png)$/i, '');
                 
-                return `${uniFolder}/${folderName}/${cleanName}.jpg`; // پیش‌فرض jpg است، اما با onerror در HTML هندل می‌شود
+                // مسیر پیش‌فرض
+                return `${uniFolder}/${folderName}/${cleanName}.jpg`;
             };
 
             const createSketchDataGrid = () => {
@@ -497,7 +496,7 @@
                                     alt="اسکچ: ${item.meta}" 
                                     class="sketch-image" 
                                     loading="lazy" 
-                                    onerror="this.onerror=null; this.src='${baseFilename}.jpeg'; this.onerror=function(){this.src='${baseFilename}.png'; this.onerror=function(){this.src='https://placehold.co/600x400/e2e8f0/9ca3af?text=%D8%AA%D8%B5%D9%88%DB%8C%D8%B1+%DB%8C%D8%A7%D9%81%D8%AA+%D9%86%D8%B4%D8%AF';}};" />
+                                    onerror="this.onerror=null; this.src='${baseFilename}.jpeg'; this.onerror=function(){this.src='${baseFilename}.png'; this.onerror=function(){this.src='${baseFilename}.PNG'; this.onerror=function(){this.src='${baseFilename}.JPG'; this.onerror=function(){this.src='https://placehold.co/600x400/e2e8f0/9ca3af?text=%D8%AA%D8%B5%D9%88%DB%8C%D8%B1+%DB%8C%D8%A7%D9%81%D8%AA+%D9%86%D8%B4%D8%AF';}};}};" />
                             </div>
                             <span class="block text-xs font-semibold uppercase ${catColorClass}">${item.cat}</span>
                             <h4 class="text-lg font-bold text-accent-dark mt-1">${item.meta}</h4>
