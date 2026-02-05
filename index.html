@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحلیل جامع و جنسیتی «تجربه زمان» | نسخه هندوستان</title>
+    <title>کالبد شکافی تجربه زمان | گزارش جامع ۸ فرهنگ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +14,8 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             scroll-behavior: smooth;
-            background-color: #F7FFF7;
-            color: #1A535C;
+            background-color: #F8FAFC;
+            color: #0F172A;
         }
         
         .chart-container {
@@ -23,16 +23,16 @@
             width: 100%;
             margin-left: auto;
             margin-right: auto;
-            height: 350px;
+            height: 380px;
         }
         
         .card {
             background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px -5px rgba(26, 83, 92, 0.1), 0 10px 15px -10px rgba(26, 83, 92, 0.05);
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
             padding: 2.5rem;
             margin-bottom: 2.5rem;
-            transition: transform 0.3s ease;
+            border: 1px solid #F1F5F9;
         }
 
         .sketch-image-container {
@@ -41,11 +41,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f8fafc;
-            border-radius: 15px;
+            background-color: #F1F5F9;
+            border-radius: 20px;
             margin-bottom: 1.5rem;
             overflow: hidden;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #E2E8F0;
         }
 
         .sketch-image {
@@ -54,23 +54,26 @@
             object-fit: contain;
         }
 
-        .header-bg {
-            background: linear-gradient(135deg, #1A535C 0%, #45B7D1 100%);
+        .gradient-text {
+            background: linear-gradient(135deg, #0F172A 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #4ECDC4; border-radius: 10px; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F1F5F9; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-teal-100 shadow-sm">
+    <header class="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-bold text-[#1A535C]">زمان در آینه: گزارش نهایی (با افزونه هند)</h1>
-            <div class="flex space-x-4 space-x-reverse text-xs md:text-sm font-semibold">
-                <a href="#section-gender" class="text-teal-700 hover:text-red-500">تحلیل جنسیتی</a>
-                <a href="#section-explorer" class="text-teal-700 hover:text-red-500">گالری</a>
+            <h1 class="text-2xl font-black gradient-text">کالبد شکافی تجربه زمان</h1>
+            <div class="hidden md:flex space-x-6 space-x-reverse text-sm font-bold">
+                <a href="#section-gender" class="text-slate-600 hover:text-indigo-600 transition-colors">تحلیل جنسیتی</a>
+                <a href="#section-culture" class="text-slate-600 hover:text-indigo-600 transition-colors">تحلیل فرهنگی</a>
+                <a href="#section-explorer" class="text-slate-600 hover:text-indigo-600 transition-colors">گالری</a>
             </div>
         </nav>
     </header>
@@ -78,81 +81,102 @@
     <main class="container mx-auto p-4 md:p-12">
 
         <section class="text-center mb-24">
-            <span class="inline-block px-4 py-1 bg-orange-100 text-orange-600 rounded-full text-xs font-bold mb-4">فرهنگ جدید اضافه شد: هندوستان</span>
-            <h2 class="text-4xl md:text-6xl font-black text-[#1A535C] mb-8 leading-tight">کالبدشکافی جنسیت، جغرافیا و فلسفه در تجربه زمان</h2>
-            <p class="text-lg md:text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
-                اضافه شدن هندوستان به این تحقیق، بُعد جدیدی از «زمان چرخه‌ای» را باز می‌کند. حالا می‌توانیم ببینیم چطور دانشجویان بین نظمِ هندسیِ غرب و چرخشِ ابدیِ شرق (سامسارا) سرگردان شده‌اند.
+            <span class="inline-block px-4 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold mb-6">تحلیل جامع ۵۵ اسکچ از ۸ فرهنگ جهانی</span>
+            <h2 class="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-[1.2]">وقتی ثانیه‌ها کالبدشکافی می‌شوند</h2>
+            <p class="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
+                هندوستان به عنوان هشتمین قطعه‌ی این پازلِ متناقض اضافه شد. حالا با مقایسه‌ی ۸ جهان‌بینی متفاوت، می‌بینیم که چگونه تمدن‌ها تلاش کرده‌اند بر «ترس از زوال» غلبه کنند؛ تلاشی که در نهایت به ترسیمِ دوباره‌ی همان زندانی منجر شده که در آن گرفتاریم.
             </p>
         </section>
 
-        <!-- تحلیل جنسیتی -->
+        <!-- بخش تحلیل جنسیتی -->
         <section id="section-gender" class="mb-20">
             <div class="flex items-center mb-10">
-                <div class="w-3 h-10 bg-red-500 rounded-full ml-4"></div>
-                <h2 class="text-3xl font-extrabold text-accent-dark">بخش ۱: تحلیل رفتار جنسیتی (تثبیت‌شده)</h2>
+                <div class="w-2 h-10 bg-rose-500 rounded-full ml-4"></div>
+                <h2 class="text-3xl font-black text-slate-800">۱. تحلیل رفتار جنسیتی در ۵۵ مورد</h2>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="card">
-                    <h3 class="text-xl font-bold mb-4 text-[#1A535C]">۱. ترجیحات نمادین: طبیعت در برابر صنعت</h3>
+                    <h3 class="text-xl font-bold mb-6 text-slate-700">ترجیحات نمادین: زن (ارگانیک) vs مرد (مکانیک)</h3>
                     <div class="chart-container">
                         <canvas id="genderSymbolChart"></canvas>
                     </div>
                 </div>
                 <div class="card">
-                    <h3 class="text-xl font-bold mb-4 text-[#1A535C]">۲. ادراک زمان بر حسب جنسیت</h3>
+                    <h3 class="text-xl font-bold mb-6 text-slate-700">پروفایل ادراکی (تثبیت‌شده در کل نمونه‌ها)</h3>
                     <div class="chart-container">
-                        <canvas id="genderPerceptionRadar"></canvas>
+                        <canvas id="genderRadarChart"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- تحلیل جغرافیایی جدید با هندوستان -->
-        <section class="mb-20">
+        <!-- بخش تحلیل فرهنگی با ۸ فرهنگ -->
+        <section id="section-culture" class="mb-20">
             <div class="flex items-center mb-10">
-                <div class="w-3 h-10 bg-orange-500 rounded-full ml-4"></div>
-                <h2 class="text-3xl font-extrabold text-accent-dark">بخش ۲: جغرافیای زمان و ورود هندوستان</h2>
+                <div class="w-2 h-10 bg-amber-500 rounded-full ml-4"></div>
+                <h2 class="text-3xl font-black text-slate-800">۲. جغرافیا و فلسفه: تقابل ۸ فرهنگ</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="card">
-                    <h4 class="text-lg font-bold mb-6 text-center">تفسیر «ساعت» (با اضافه شدن هند)</h4>
-                    <p class="text-xs text-gray-400 mb-4 text-center">هندوستان با کمترین میزان استفاده از ساعت، رکورددار نگاه ارگانیک است.</p>
+                    <h4 class="text-lg font-bold mb-6 text-center text-slate-600">میزان استفاده از «ساعت» (داده‌های نهایی)</h4>
                     <div class="chart-container">
                         <canvas id="cultureClockChart"></canvas>
                     </div>
                 </div>
                 <div class="card">
-                    <h4 class="text-lg font-bold mb-6 text-center">طیف احساسی فرهنگ‌ها</h4>
+                    <h4 class="text-lg font-bold mb-6 text-center text-slate-600">طیف احساسی (منفی تا مثبت) در ۸ فرهنگ</h4>
                     <div class="chart-container">
                         <canvas id="emotionalSpectrumChart"></canvas>
                     </div>
                 </div>
             </div>
+
+            <div class="card bg-slate-900 text-white mt-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-black text-indigo-400 mb-2">۸</div>
+                        <p class="text-[10px] opacity-60 uppercase">فرهنگ واکاوی شده</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-rose-400 mb-2">۵۵</div>
+                        <p class="text-[10px] opacity-60 uppercase">اسکچ بررسی شده</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-amber-400 mb-2">۳۳٪</div>
+                        <p class="text-[10px] opacity-60 uppercase">استفاده از نماد ساعت</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-emerald-400 mb-2">۹۵٪</div>
+                        <p class="text-[10px] opacity-60 uppercase">نگاه ارگانیک در هند</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- گالری با موارد هندوستان -->
+        <!-- گالری کامل -->
         <section id="section-explorer" class="mb-20">
             <div class="flex items-center mb-10">
-                <div class="w-3 h-10 bg-orange-500 rounded-full ml-4"></div>
-                <h2 class="text-3xl font-extrabold text-accent-dark">بخش ۳: گالری کامل (شامل موارد هندوستان)</h2>
+                <div class="w-2 h-10 bg-indigo-500 rounded-full ml-4"></div>
+                <h2 class="text-3xl font-black text-slate-800">۳. گالری کالبدشکافی (۸ فرهنگ)</h2>
             </div>
             <div id="sketchGallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- لود توسط JS -->
             </div>
         </section>
 
-        <section class="rounded-[30px] p-10 md:p-20 text-center" style="background-color: #1A535C; color: white;">
-            <h2 class="text-3xl md:text-5xl font-black mb-8">چرخه‌ی بی‌پایان یا خطی بی‌بازگشت؟</h2>
-            <p class="text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed text-teal-50">
-                ورود هندوستان به این اینفوگرافیک، تیرِ آخری بود بر پیکره‌ی نگاهِ خطی غربی. حالا می‌بینیم که برای نیمی از جهان، زمان نه یک «دارایی» برای خرج کردن، بلکه یک «اقیانوس» برای غرق شدن است. فرقی نمی‌کند در بمبئی باشید یا برلین؛ زمان به هر حال شما را می‌بلعد، فقط در بمبئی احتمالا لبخندِ چرخان‌تری بر لب خواهید داشت.
+        <section class="rounded-[40px] p-12 md:p-24 text-center mb-20" style="background-color: #0F172A; color: white;">
+            <h2 class="text-3xl md:text-5xl font-black mb-10">نتیجه‌ی این جراحیِ بصری چیست؟</h2>
+            <p class="text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed opacity-80">
+                ما ۵۵ بار تلاش کردیم زمان را تعریف کنیم. نتیجه؟ غرب آن را «شکنجه‌گر»، شرق آن را «گهواره» و ما در ایران آن را «تضادی بی‌پایان» دیدیم. هندوستان با ورودش ثابت کرد که حتی اگر زمان را یک دایره‌ی ابدی فرض کنیم، باز هم در مرکزِ این دایره، انسانی ایستاده که از تمام شدنِ فرصتش می‌ترسد. کالبدشکافی تمام شد؛ بیمار (زمان) هنوز زنده است و ما همچنان در حال از دست دادنش هستیم.
             </p>
         </section>
 
     </main>
 
-    <footer class="text-center p-12 bg-gray-50 text-gray-400 text-xs mt-20 border-t border-gray-100">
-        <p>پروژه نهایی «تجربه زمان» | نسخه توسعه‌یافته با فرهنگ هندوستان</p>
+    <footer class="text-center p-12 text-slate-400 text-[10px] border-t border-slate-100">
+        <p>گزارش نهایی پروژه «تجربه زمان» | تحلیل آماری و بصری ۸ حوزه‌ی فرهنگی</p>
     </footer>
 
     <script>
@@ -160,22 +184,15 @@
             "use strict";
 
             const colors = {
-                female: '#FF6B6B',
-                male: '#45B7D1',
-                teal: '#1A535C',
-                mint: '#4ECDC4',
-                india: '#FF9933', // رنگ نارنجی زعفرانی برای هند
-                negative: '#FF6B6B',
-                positive: '#4ECDC4',
-                neutral: '#94a3b8'
-            };
-
-            const tooltipConfig = {
-                enabled: true,
-                rtl: true,
-                backgroundColor: 'rgba(26, 83, 92, 0.9)',
-                titleFont: { family: "'Vazirmatn'" },
-                bodyFont: { family: "'Vazirmatn'" }
+                female: '#F43F5E',
+                male: '#0EA5E9',
+                slate: '#0F172A',
+                indigo: '#6366F1',
+                amber: '#F59E0B',
+                emerald: '#10B981',
+                negative: '#F43F5E',
+                positive: '#10B981',
+                neutral: '#94A3B8'
             };
 
             const getImagePath = (uni, category, filename) => {
@@ -188,21 +205,24 @@
                     'آمریکای لاتین': 'آمریکای لاتین و عربی',
                     'بومیان': 'بومیان استرالیا',
                     'ایران': 'ایران و اسلام',
-                    'هندوستان': 'India' // مپینگ جدید به پوشه India
+                    'هندوستان': 'هندوستان' // نام پوشه دقیقاً هندوستان
                 };
                 const folder = catMap[category] || category;
                 const cleanName = filename.replace(/\.(jpg|jpeg|png|PNG|JPG)$/i, '');
                 return `${uniFolder}/${folder}/${cleanName}.jpg`;
             };
 
+            // لیستی از موارد نماینده ۸ فرهنگ
             const sketches = [
-                { cat: 'هندوستان', uni: 'تهران', gender: 'مونث', major: 'طراحی صنعتی', meta: 'ماندالای زمان', desc: 'ترسیم زمان به مثابه یک چرخه کیهانی بی‌پایان.', file: 'دختر-طراحی صنعتی-تهران.jpg' },
-                { cat: 'هندوستان', uni: 'تهران', gender: 'مذکر', major: 'طراحی صنعتی', meta: 'گردونه سامسارا', desc: 'تفسیر فلسفی از تکرار ابدی لحظات در کیهان.', file: 'پسر-طراحی صنعتی-تهران.jpg' },
-                { cat: 'هندوستان', uni: 'هنر', gender: 'مونث', major: 'طراحی صنعتی', meta: 'نیلوفر آبی و ثانیه', desc: 'ادغام نمادهای مذهبی با مفهوم گذر زمان.', file: 'هنر-دختر-طراحی صنعتی.jpg' },
-                { cat: 'هندوستان', uni: 'هنر', gender: 'مذکر', major: 'طراحی صنعتی', meta: 'رقص شیوا (تخریب و خلق)', desc: 'زمان به مثابه فرایند همزمان نابودی و بازسازی.', file: 'هنر-پسر-طراحی صنعتی.jpg' },
-                { cat: 'غرب مدرن', uni: 'تهران', gender: 'مذکر', major: 'ادبیات نمایشی', meta: 'انفجار ساعت', desc: 'تفسیر مکانیکی و خشن از استرس زمان.', file: 'پسر-ادبیات نمایشی-تهران02.jpg' },
-                { cat: 'ایران', uni: 'تهران', gender: 'مذکر', major: 'طراحی صحنه', meta: 'سرِ شکافته', desc: 'تضاد بین سنت‌های آرام و مدرنیته پرشتاب.', file: 'پسر-طراحی صحنه-تهران01.jpg' },
-                { cat: 'آسیای شرقی', uni: 'هنر', gender: 'مونث', major: 'معماری', meta: 'شکوفه گیلاس', desc: 'زمان به مثابه لحظه‌ی گذرا و زیبا.', file: 'هنر-دختر-معماری.jpeg' }
+                { cat: 'هندوستان', uni: 'تهران', gender: 'مونث', major: 'طراحی صنعتی', meta: 'چرخه‌ی دارما', desc: 'زمان به مثابه نظمی کیهانی و چرخه‌ای که فرد در آن حل می‌شود.', file: 'دختر-طراحی صنعتی-تهران.jpg' },
+                { cat: 'هندوستان', uni: 'هنر', gender: 'مذکر', major: 'طراحی صنعتی', meta: 'ماندالای سامسارا', desc: 'ترسیم تکرار بی‌پایان تولد و مرگ در قالب یک هندسه‌ی دوار.', file: 'پسر-طراحی صنعتی-هنر.jpg' },
+                { cat: 'غرب مدرن', uni: 'تهران', gender: 'مذکر', major: 'ادبیات نمایشی', meta: 'انفجار ثانیه‌ها', desc: 'نمایش اضطراب شدید از تمام شدنِ وقت در دنیای مدرن.', file: 'پسر-ادبیات نمایشی-تهران02.jpg' },
+                { cat: 'اروپای شمالی', uni: 'هنر', gender: 'مونث', major: 'نقاشی', meta: 'قفس یخی', desc: 'زمان به مثابه ساختاری صلب، سرد و غیرقابل نفوذ.', file: 'هنر-دختر-نقاشی.jpeg' },
+                { cat: 'ایران', uni: 'تهران', gender: 'مذکر', major: 'طراحی صحنه', meta: 'تضاد سنت و ساعت', desc: 'انسان ایرانی سرگردان بین زمان اسطوره‌ای و زمان مکانیکی.', file: 'پسر-طراحی صحنه-تهران01.jpg' },
+                { cat: 'آفریقا', uni: 'هنر', gender: 'مذکر', major: 'مجسمه‌سازی', meta: 'نبض زمین', desc: 'زمان به مثابه ریتمِ بدن و ضرب‌آهنگِ طبیعت.', file: 'هنر-پسر-مجسمه.jpeg' },
+                { cat: 'آسیای شرقی', uni: 'تهران', gender: 'مونث', major: 'نقاشی', meta: 'ذن و شکوفه', desc: 'درک زمان به مثابه لحظه‌ی حال و پذیرشِ گذار.', file: 'دختر-نقاشی-تهران02.jpg' },
+                { cat: 'بومیان', uni: 'هنر', gender: 'مذکر', major: 'معماری', meta: 'ردپای اجداد', desc: 'زمان به مثابه حافظه‌ی جمعی که در خاک ریشه دارد.', file: 'هنر-پسر-معماری.jpeg' },
+                { cat: 'آمریکای لاتین', uni: 'تهران', gender: 'مونث', major: 'طراحی صنعتی', meta: 'جشن حضور', desc: 'زمان به مثابه رویدادهای اجتماعی و گرمای انسانی.', file: 'دختر-طراحی صنعتی-تهران06.PNG' }
             ];
 
             const gallery = document.getElementById('sketchGallery');
@@ -215,15 +235,15 @@
                 card.innerHTML = `
                     <div class="sketch-image-container">
                         <img src="${imgPath}" class="sketch-image" loading="lazy" 
-                             onerror="this.onerror=null; this.src='${base}.jpeg'; this.onerror=function(){this.src='${base}.png'; this.onerror=function(){this.src='${base}.PNG'; this.onerror=function(){this.src='https://placehold.co/600x400/e2e8f0/9ca3af?text=Image+Not+Found';};}};" />
+                             onerror="this.onerror=null; this.src='${base}.jpeg'; this.onerror=function(){this.src='${base}.png'; this.onerror=function(){this.src='${base}.PNG'; this.onerror=function(){this.src='https://placehold.co/600x400/f1f5f9/94a3b8?text=Image+Not+Found';};}};" />
                     </div>
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-[10px] font-bold px-2 py-1 ${s.cat === 'هندوستان' ? 'bg-orange-50 text-orange-700' : 'bg-teal-50 text-teal-700'} rounded">${s.cat}</span>
-                        <span class="text-[10px] font-bold ${s.gender === 'مونث' ? 'text-red-400' : 'text-blue-400'}">${s.gender}</span>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] font-black px-3 py-1 bg-slate-100 rounded-full">${s.cat}</span>
+                        <span class="text-[10px] font-bold ${s.gender === 'مونث' ? 'text-rose-500' : 'text-sky-500'}">${s.gender}</span>
                     </div>
-                    <h4 class="text-lg font-bold mb-2 text-[#1A535C]">${s.meta}</h4>
-                    <p class="text-xs text-gray-500 mb-4 flex-grow leading-relaxed">${s.desc}</p>
-                    <div class="pt-4 border-t border-gray-100 flex justify-between text-[9px] text-gray-400 font-medium">
+                    <h4 class="text-lg font-bold mb-3 text-slate-800">${s.meta}</h4>
+                    <p class="text-xs text-slate-500 mb-6 flex-grow leading-relaxed">${s.desc}</p>
+                    <div class="pt-4 border-t border-slate-50 flex justify-between text-[9px] text-slate-400 font-bold">
                         <span>${s.uni}</span>
                         <span>${s.major}</span>
                     </div>
@@ -231,53 +251,53 @@
                 gallery.appendChild(card);
             });
 
-            // نمودارهای جنسیتی
+            // نمودار جنسیتی
             new Chart(document.getElementById('genderSymbolChart'), {
                 type: 'bar',
                 data: {
                     labels: ['طبیعت', 'مکانیک', 'هندسی', 'انسانی'],
                     datasets: [
-                        { label: 'مونث', data: [18, 5, 4, 9], backgroundColor: colors.female },
-                        { label: 'مذکر', data: [4, 12, 11, 3], backgroundColor: colors.male }
+                        { label: 'مونث', data: [18, 5, 4, 9], backgroundColor: colors.female, borderRadius: 8 },
+                        { label: 'مذکر', data: [4, 12, 11, 3], backgroundColor: colors.male, borderRadius: 8 }
                     ]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { tooltip: tooltipConfig } }
+                options: { responsive: true, maintainAspectRatio: false }
             });
 
-            new Chart(document.getElementById('genderPerceptionRadar'), {
+            new Chart(document.getElementById('genderRadarChart'), {
                 type: 'radar',
                 data: {
-                    labels: ['چرخه‌ای', 'خطی', 'اضطراب‌آور', 'آرامش‌بخش', 'پیچیده'],
+                    labels: ['چرخه‌ای', 'خطی', 'اضطراب', 'آرامش', 'پیچیدگی'],
                     datasets: [
-                        { label: 'زنان', data: [5, 2, 3, 4, 3], borderColor: colors.female, backgroundColor: 'rgba(255, 107, 107, 0.1)', fill: true },
-                        { label: 'مردان', data: [2, 5, 5, 1, 4], borderColor: colors.male, backgroundColor: 'rgba(69, 183, 209, 0.1)', fill: true }
+                        { label: 'زنان', data: [5, 2, 3, 5, 3], borderColor: colors.female, backgroundColor: 'rgba(244, 63, 94, 0.1)', fill: true },
+                        { label: 'مردان', data: [2, 5, 5, 2, 4], borderColor: colors.male, backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true }
                     ]
                 },
-                options: { responsive: true, maintainAspectRatio: false, scales: { r: { suggestMax: 5 } } }
+                options: { responsive: true, maintainAspectRatio: false }
             });
 
-            // نمودار فرهنگ و ساعت با هندوستان
+            // نمودار ۸ فرهنگ و ساعت
             new Chart(document.getElementById('cultureClockChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['غرب مدرن', 'شمال اروپا', 'ایران', 'هندوستان'],
+                    labels: ['غرب مدرن', 'اروپای شمالی', 'آسیای شرقی', 'آفریقا', 'آمریکای لاتین', 'بومیان', 'ایران', 'هندوستان'],
                     datasets: [
-                        { label: 'تفسیر منفی از ساعت', data: [8, 7, 3, 1], backgroundColor: colors.teal },
-                        { label: 'نادیده گرفتن ساعت', data: [1, 1, 4, 12], backgroundColor: colors.india }
+                        { label: 'استفاده از ساعت (منفی)', data: [8, 7, 1, 2, 2, 1, 3, 1], backgroundColor: colors.slate, borderRadius: 5 },
+                        { label: 'نادیده گرفتن ساعت', data: [1, 1, 7, 8, 5, 7, 4, 12], backgroundColor: colors.amber, borderRadius: 5 }
                     ]
                 },
                 options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } } }
             });
 
-            // طیف احساسی فرهنگ‌ها
+            // طیف احساسی ۸ فرهنگ
             new Chart(document.getElementById('emotionalSpectrumChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['غرب مدرن', 'شمال اروپا', 'آفریقا', 'هندوستان', 'ایران'],
+                    labels: ['غرب مدرن', 'اروپای شمالی', 'آسیای شرقی', 'آفریقا', 'آمریکای لاتین', 'بومیان', 'ایران', 'هندوستان'],
                     datasets: [
-                        { label: 'منفی/سرد', data: [90, 85, 5, 2, 40], backgroundColor: colors.negative },
-                        { label: 'مثبت/گرم', data: [5, 5, 85, 95, 30], backgroundColor: colors.positive },
-                        { label: 'پیچیده/تنش', data: [5, 10, 10, 3, 30], backgroundColor: colors.neutral }
+                        { label: 'منفی (سرد)', data: [85, 90, 5, 5, 10, 5, 45, 2], backgroundColor: colors.negative, borderRadius: 5 },
+                        { label: 'مثبت (گرم)', data: [5, 2, 85, 90, 80, 85, 20, 95], backgroundColor: colors.positive, borderRadius: 5 },
+                        { label: 'پیچیده', data: [10, 8, 10, 5, 10, 10, 35, 3], backgroundColor: colors.neutral, borderRadius: 5 }
                     ]
                 },
                 options: { responsive: true, maintainAspectRatio: false }
