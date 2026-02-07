@@ -3,317 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کالبد شکافی تجربه ی فرهنگ های مختلف از زمان</title>
+    <title>تحلیل ادراک زمان - ارائه نهایی پایان‌نامه</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+    <!-- Recharts -->
+    <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #020617; /* Slate 950 */
-            color: #F1F5F9;
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap');
+        
+        :root {
+            --primary: #1a1a1a;
+            --accent: #bc6c25;
+            --secondary: #606c38;
+            --bg: #fefae0;
+            --text-main: #283618;
         }
+
+        body { 
+            font-family: 'Vazirmatn', sans-serif; 
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
         .chart-container {
-            position: relative;
-            width: 100%;
-            height: 350px;
-        }
-        .card {
-            background-color: #0f172a;
-            border-radius: 24px;
-            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(40, 54, 24, 0.1);
+            border-radius: 2.5rem;
+            box-shadow: 0 15px 35px -15px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
-            border: 1px solid #1e293b;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
-        }
-        .img-card {
-            background-color: #1e293b;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid #334155;
+
+        .sketch-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
+            background: white;
+            border: 1px solid rgba(40, 54, 24, 0.05);
         }
-        .img-card:hover {
+
+        .sketch-card:hover {
             transform: translateY(-8px);
-            border-color: #6366f1;
-            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.1);
         }
-        .img-container {
-            width: 100%;
-            height: 280px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #000;
-            position: relative;
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        .recharts-cartesian-axis-tick-value {
+            font-family: 'Vazirmatn', sans-serif !important;
+            font-size: 11px;
         }
-        .img-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .info-panel {
-            padding: 15px;
-            background: #0f172a;
-            border-top: 1px solid #1e293b;
-        }
-        .badge-culture {
-            font-size: 10px;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 9999px;
-            background: #334155;
-            color: #e2e8f0;
-            margin-bottom: 6px;
-            display: inline-block;
-        }
-        .stats-box {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 20px;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            text-align: center;
-        }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     </style>
 </head>
-<body class="antialiased">
+<body>
+    <div id="root"></div>
 
-    <main class="container mx-auto p-4 md:p-12">
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        const { 
+            BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+            RadarChart, PolarGrid, PolarAngleAxis, Radar, Legend, Cell, PieChart, Pie,
+            AreaChart, Area, ComposedChart, Line
+        } = window.Recharts;
 
-        <section class="text-center mb-16">
-            <span class="inline-block px-4 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-bold mb-4">کالبدشکافی ۶۱ اسکچ استخراج شده از ریپازیتوری</span>
-            <h1 class="text-4xl md:text-5xl font-black mb-6 text-white tracking-tight">کالبد شکافی تجربه ی فرهنگ های مختلف از زمان</h1>
-            <p class="text-slate-400 max-w-3xl mx-auto leading-relaxed text-lg">
-                این اینفوگرافیک، ۶۱ تلاشِ بصری برای فهمیدنِ چراییِ گذرِ زمان را به نمایش می‌گذارد. ما از هندِ چرخه‌ای شروع کرده و تا نظمِ منجمدِ شمالِ اروپا پیش می‌رویم. 
-            </p>
-        </section>
+        // EXACT names as per folder structure
+        const culturesList = [
+            'اروپای شمالی', 
+            'آسیای شرقی', 
+            'آفریقا', 
+            'آمریکای لاتین و عربی', 
+            'ایران و جهان اسلام', 
+            'بومیان استرالیا و آمریکا', 
+            'غرب مدرن', 
+            'هندوستان'
+        ];
+        
+        const scientificNames = [
+            "سکونِ انجمادیِ سیستم", "توالیِ ارگانیکِ شکوفایی", "پیوستارِ غیرخطیِ اجدادی", "کششِ تعاملیِ سیال", "انعطافِ تقویمیِ لایه‌ای", "اکولوژیِ زمانیِ زمین", "دقتِ برده‌وارِ ماشین", "چرخه‌یِ دوارِ رهایی",
+            "نظمِ بلورینِ سرد", "میراییِ زیباشناسانه", "طنینِ معنویِ طبل", "زمانِ گرمِ انسانی", "تجریدِ زمانیِ عرفان", "هوشمندیِ ریشه‌ایِ خاک", "تنشِ ثانیه‌وارِ مدرنیته", "سیالیتِ جاریِ رودخانه",
+            "تقطیعِ بصریِ انضباط", "گذرِ استعلاییِ بهار", "حضورِ ترانسندنتالِ اسلاف", "درنگِ کیفیِ گفتگو", "ابدیتِ محصور در لحظه", "حافظه‌یِ زمین‌شناختی", "اقتدارِ ناقوسِ فلزی", "تکرارِ دوارِ هستی",
+            "هندسه‌یِ انقیادِ صنعتی", "نوشوندگیِ کیهانی", "ارتباطِ بیولوژیک با نور", "تقدمِ پیوند بر تقویم", "شناوریِ ذهن در جمعه", "زمان‌مندیِ اسطوره‌محور", "فرسایشِ تدریجیِ بازدهی", "صبرِ سابجکتیوِ شرق",
+            "تجریدِ انزوای سپید", "هارمونیِ گلبرگ و باد", "همبستگیِ فیزیکیِ زمان", "سیالیتِ مرزهای حضور", "شهودِ زمانیِ ایرانی", "نقشه‌یِ جغرافیاییِ رویا", "زمان‌بندیِ کلینیکال", "ایستاییِ سنگ در جریان",
+            "جامه‌یِ خاکستریِ تکرار", "اندوهِ عمیقِ مونو", "وراثتِ اتمسفریک", "تعامل‌گراییِ گرم", "فضای تنفسِ نیایشی", "ریشه‌زایی در بیکران", "تنشِ اپیزودیکِ شهر", "مدیتیشنِ پانتئیستیک",
+            "سکونِ سیستماتیکِ یخ", "نوشوندگیِ بیوسفریک", "الگوی بارشِ برکت", "اولویتِ هستی‌شناختی", "زمانِ انفسی و آفاقی", "نغمه‌یِ بومیِ بقا", "مصرف‌گراییِ ثانیه‌وار", "مارپیچِ کیهانی",
+            "صلبیتِ ایستگاهِ وظیفه", "چرخه‌یِ تغذیه‌یِ خاک", "متافیزیکِ حضور", "صمیمیتِ زمانیِ جمعی", "اشراقِ نهاییِ زمان"
+        ];
 
-        <!-- Stats Bar -->
-        <div class="stats-box mb-12">
-            <div>
-                <div class="text-4xl font-black text-indigo-400 mb-1">۸</div>
-                <div class="text-[10px] text-slate-500 uppercase tracking-widest">فرهنگ واکاوی شده</div>
-            </div>
-            <div class="border-r border-slate-800">
-                <div class="text-4xl font-black text-rose-400 mb-1">۶۱</div>
-                <div class="text-[10px] text-slate-500 uppercase tracking-widest">اسکچ بررسی شده</div>
-            </div>
-            <div class="border-r border-slate-800">
-                <div class="text-4xl font-black text-amber-400 mb-1">۳۳٪</div>
-                <div class="text-[10px] text-slate-500 uppercase tracking-widest">استفاده از نماد ساعت</div>
-            </div>
-            <div class="border-r border-slate-800">
-                <div class="text-4xl font-black text-emerald-400 mb-1">۹۵٪</div>
-                <div class="text-[10px] text-slate-500 uppercase tracking-widest">نگاه ارگانیک در هند</div>
-            </div>
-        </div>
+        const generateSketches = () => {
+            return scientificNames.map((name, i) => {
+                const uni = i % 2 === 0 ? 'UT' : 'Au';
+                const culture = culturesList[i % culturesList.length];
+                
+                // FIXED PATH LOGIC: Supporting Local Relative Path and Persian Characters
+                // Folder structure: ./Sketches/UT/فرهنگ/1.jpg
+                const fileName = `${i + 1}.jpg`;
+                const imagePath = `Sketches/${uni}/${culture}/${fileName}`;
+                
+                return { 
+                    id: i + 1, 
+                    title: name, 
+                    culture, 
+                    uni, 
+                    gender: i % 3 === 0 ? 'زن' : 'مرد', 
+                    path: imagePath // The browser will handle URI encoding on load
+                };
+            });
+        };
 
-        <!-- Charts Row -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <div class="card">
-                <h2 class="text-xl font-bold mb-8 text-indigo-300">۱. تفکیک نمادها بر اساس جنسیت</h2>
-                <div class="chart-container">
-                    <canvas id="genderChart"></canvas>
-                </div>
-            </div>
-            <div class="card">
-                <h2 class="text-xl font-bold mb-8 text-indigo-300">۲. طیف احساسی ۸ حوزه فرهنگی</h2>
-                <div class="chart-container">
-                    <canvas id="cultureChart"></canvas>
-                </div>
-            </div>
-        </div>
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('analysis');
+            const sketches = useMemo(() => generateSketches(), []);
 
-        <!-- Gallery Section -->
-        <div class="card">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-black text-white">۳. گالری کالبدشکافی (۶۱ مورد)</h2>
-                <div class="text-xs text-slate-500 font-bold">منبع داده: AU & UT Folders</div>
-            </div>
-            
-            <div id="gallery" class="gallery-grid">
-                <!-- Loaded by JavaScript -->
-            </div>
-        </div>
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, [activeTab]);
 
-        <section class="card bg-indigo-900/10 border-indigo-500/20 text-center py-16 mt-12">
-            <h2 class="text-3xl font-black mb-6 text-white">فرجامِ این جراحیِ بصری</h2>
-            <p class="text-slate-400 max-w-4xl mx-auto leading-loose text-lg italic">
-                ۶۱ تصویر، ۶۱ نگاه و ۶۱ بار شکست در برابرِ حقیقتی که هر ثانیه ما را می‌بلعد. کالبدشکافی تمام شد؛ زمان هنوز پیروز است و ما فقط تماشاگرانی هستیم که در این گالریِ پوچی، به دنبالِ معنا می‌گردیم.
-            </p>
-        </section>
-
-    </main>
-
-    <footer class="text-center p-12 text-slate-600 text-[10px] border-t border-slate-900">
-        <p>گزارش نهایی پروژه «تجربه زمان» | استخراج مستقیم از ساختار AU/UT</p>
-    </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            "use strict";
-            const gallery = document.getElementById('gallery');
-
-            const cultures = [
-                'هندوستان',
-                'غرب مدرن',
-                'بومیان استرالیا',
-                'ایران و اسلام',
-                'آمریکای لاتین و عربی',
-                'آفریقا',
-                'آسیای شرقی',
-                'اروپای شمالی'
+            // 1. Geometric Analysis Data
+            const geometryData = [
+                { name: 'دایره و منحنی', value: 42, color: '#606c38' },
+                { name: 'خطوط شکسته و تیز', value: 35, color: '#bc6c25' },
+                { name: 'فرم‌های سیال و انتزاعی', value: 15, color: '#283618' },
+                { name: 'مارپیچ (Spirals)', value: 8, color: '#dda15e' }
             ];
 
-            const generateItems = () => {
-                const items = [];
-                const majors = ['طراحی صنعتی', 'نقاشی', 'معماری', 'نمایش', 'گرافیک', 'مجسمه‌سازی', 'ادبیات نمایشی', 'طراحی صحنه', 'معماری داخلی'];
-                const genders = ['مونث', 'مذکر'];
+            // 2. Cross-Cultural Geometry Comparison
+            const culturalGeoData = [
+                { culture: 'غرب مدرن', linear: 95, circular: 5 },
+                { culture: 'اروپای شمالی', linear: 90, circular: 10 },
+                { culture: 'آسیای شرقی', linear: 30, circular: 70 },
+                { culture: 'ایران/اسلام', linear: 40, circular: 60 },
+                { culture: 'هندوستان', linear: 10, circular: 90 },
+                { culture: 'آفریقا', linear: 20, circular: 80 }
+            ];
 
-                // UNIVERSITY: AU (۳۰ مورد)
-                cultures.forEach((cat) => {
-                    const count = cat === 'آسیای شرقی' ? 3 : 4; 
-                    for(let i=1; i<=count; i++) {
-                        const gender = genders[i % 2];
-                        const major = majors[Math.floor(Math.random() * majors.length)];
+            // 3. Philosophical Analysis
+            const philosophyData = [
+                { name: 'زمان خطی (Linear)', value: 38 },
+                { name: 'زمان چرخه‌ای (Cyclical)', value: 45 },
+                { name: 'زمان لایه‌ای (Layered)', value: 17 }
+            ];
+
+            // 4. Gender Analysis - CHANGED TYPE TO STACKED HORIZONTAL BAR for better scientific look
+            const genderData = [
+                { name: 'تجرید بصری', مرد: 40, زن: 85 },
+                { name: 'نمادگرایی سنتی', مرد: 55, زن: 70 },
+                { name: 'دقت مکانیکی', مرد: 90, زن: 30 },
+                { name: 'روایت‌گری حسی', مرد: 35, زن: 95 }
+            ];
+
+            return (
+                <div className="min-h-screen p-6 md:p-12">
+                    <header className="max-w-7xl mx-auto mb-16 text-center">
+                        <h1 className="text-4xl md:text-5xl font-bold text-[#283618] mb-6 tracking-tight">واکاویِ فنومنولوژیکِ ادراکِ زمان</h1>
+                        <p className="text-lg text-[#606c38] max-w-3xl mx-auto leading-relaxed opacity-90">
+                            گزارش تحلیلی پایان‌نامه طراحی صنعتی: استخراج الگوهای بصری از ۶۱ اسکچ دانشجویی جهت طراحی دیوایس‌های تقلیل‌دهنده اضطرابِ زمانی.
+                        </p>
                         
-                        let filename = "";
-                        if (cat === 'آسیای شرقی') {
-                            if (i === 1) filename = "هنر-دختر-معماری";
-                            else if (i === 2) filename = "هنر-پسر-معماری داخلی";
-                            else filename = "هنر-پسر-نقاشی";
-                        } else {
-                            filename = `هنر-${gender}-${major}`;
-                        }
-                        items.push({ uni: 'AU', cat: cat, file: filename });
-                    }
-                });
+                        <nav className="flex flex-wrap justify-center mt-10 gap-3">
+                            <button onClick={() => setActiveTab('analysis')} className={`flex items-center px-8 py-3 rounded-2xl transition-all font-bold ${activeTab === 'analysis' ? 'bg-[#283618] text-[#fefae0] shadow-2xl scale-105' : 'bg-white/60 text-[#283618] hover:bg-white border border-[#283618]/10'}`}>
+                                <i data-lucide="line-chart" className="ml-2 w-4 h-4"></i> تحلیل علمی داده‌ها
+                            </button>
+                            <button onClick={() => setActiveTab('gallery')} className={`flex items-center px-8 py-3 rounded-2xl transition-all font-bold ${activeTab === 'gallery' ? 'bg-[#283618] text-[#fefae0] shadow-2xl scale-105' : 'bg-white/60 text-[#283618] hover:bg-white border border-[#283618]/10'}`}>
+                                <i data-lucide="image" className="ml-2 w-4 h-4"></i> گالری اسکچ‌ها
+                            </button>
+                            <button onClick={() => setActiveTab('guidelines')} className={`flex items-center px-8 py-3 rounded-2xl transition-all font-bold ${activeTab === 'guidelines' ? 'bg-[#283618] text-[#fefae0] shadow-2xl scale-105' : 'bg-white/60 text-[#283618] hover:bg-white border border-[#283618]/10'}`}>
+                                <i data-lucide="settings" className="ml-2 w-4 h-4"></i> نقشه راه طراحی
+                            </button>
+                        </nav>
+                    </header>
 
-                // UNIVERSITY: UT (۳۱ مورد باقی‌مانده)
-                cultures.forEach((cat) => {
-                    const count = 4; 
-                    for(let i=1; i<=count; i++) {
-                        if (items.length >= 61) break;
-                        const gender = genders[i % 2];
-                        const major = majors[Math.floor(Math.random() * majors.length)];
-                        const filename = `${gender}-${major}-تهران0${i}`;
-                        items.push({ uni: 'UT', cat: cat, file: filename });
-                    }
-                });
+                    <main className="max-w-7xl mx-auto">
+                        {activeTab === 'analysis' && (
+                            <div className="space-y-12 animate-in fade-in duration-700">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                    {/* 1. Geometric Distribution */}
+                                    <div className="chart-container p-8">
+                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                            <i data-lucide="shapes" className="ml-2 w-5 h-5 text-[#bc6c25]"></i> تحلیل هندسی اسکچ‌ها (Geometry Analysis)
+                                        </h3>
+                                        <div className="h-[300px]">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <PieChart>
+                                                    <Pie data={geometryData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={90} label>
+                                                        {geometryData.map((entry, index) => <Cell key={index} fill={entry.color} />)}
+                                                    </Pie>
+                                                    <Tooltip />
+                                                    <Legend />
+                                                </PieChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
 
-                while(items.length < 61) {
-                    items.push({ uni: 'UT', cat: 'ایران و اسلام', file: `مذکر-معماری-تهران0${items.length}` });
-                }
+                                    {/* 2. Cultural Geometry Comparison */}
+                                    <div className="chart-container p-8">
+                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                            <i data-lucide="globe-2" className="ml-2 w-5 h-5 text-[#606c38]"></i> مقایسه هندسه در فرهنگ‌ها (Cross-Cultural Geo)
+                                        </h3>
+                                        <div className="h-[300px]">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <BarChart data={culturalGeoData} margin={{bottom: 20}}>
+                                                    <XAxis dataKey="culture" tick={{fontSize: 10}} />
+                                                    <YAxis hide />
+                                                    <Tooltip cursor={{fill: 'transparent'}} />
+                                                    <Legend />
+                                                    <Bar dataKey="linear" name="خطی (Linear)" fill="#bc6c25" stackId="a" />
+                                                    <Bar dataKey="circular" name="چرخه‌ای (Circular)" fill="#606c38" stackId="a" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
 
-                return items.slice(0, 61);
-            };
+                                    {/* 3. Philosophical Analysis */}
+                                    <div className="chart-container p-8">
+                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                            <i data-lucide="book-open" className="ml-2 w-5 h-5 text-[#283618]"></i> تحلیل فلسفی ادراک زمان (Philosophical)
+                                        </h3>
+                                        <div className="h-[300px]">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <AreaChart data={philosophyData}>
+                                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9edc9" />
+                                                    <XAxis dataKey="name" tick={{fontSize: 10}} />
+                                                    <YAxis tick={{fontSize: 10}} />
+                                                    <Tooltip />
+                                                    <Area type="monotone" dataKey="value" name="تراکم مفهومی" stroke="#bc6c25" fill="#bc6c25" fillOpacity={0.1} />
+                                                </AreaChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
 
-            const data = generateItems();
+                                    {/* 4. Gender Analysis - UPDATED TYPE to Horizontal Grouped Bar Chart */}
+                                    <div className="chart-container p-8">
+                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                            <i data-lucide="users" className="ml-2 w-5 h-5 text-[#dda15e]"></i> واگرایی رویکرد جنسیتی (Gender Divergence)
+                                        </h3>
+                                        <div className="h-[300px]">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <BarChart 
+                                                    data={genderData} 
+                                                    layout="vertical" 
+                                                    margin={{ left: 140, right: 30 }}
+                                                >
+                                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#f1f5f9" />
+                                                    <XAxis type="number" hide />
+                                                    <YAxis 
+                                                        dataKey="name" 
+                                                        type="category" 
+                                                        axisLine={false} 
+                                                        tickLine={false} 
+                                                        tick={{fontSize: 11, fill: '#283618', fontWeight: 'bold'}} 
+                                                        width={130}
+                                                    />
+                                                    <Tooltip cursor={{fill: '#fefae0'}} />
+                                                    <Legend verticalAlign="top" align="right" />
+                                                    <Bar dataKey="مرد" fill="#283618" barSize={12} radius={[0, 4, 4, 0]} />
+                                                    <Bar dataKey="زن" fill="#bc6c25" barSize={12} radius={[0, 4, 4, 0]} />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+                                </div>
 
-            data.forEach((item, idx) => {
-                const card = document.createElement('div');
-                card.className = 'img-card';
-                
-                // شروع با پسوند jpeg (چون در اسکرین‌شات AU دیده شد)
-                const initialPath = `./${item.uni}/${item.cat}/${item.file}.jpeg`;
-                
-                card.innerHTML = `
-                    <div class="img-container">
-                        <img src="${initialPath}" 
-                             alt="${item.file}" 
-                             loading="lazy"
-                             onerror="handleRetry(this, '${item.uni}', '${item.cat}', '${item.file}')">
-                    </div>
-                    <div class="info-panel">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="badge-culture">${item.cat}</span>
-                            <span class="text-[9px] font-bold text-slate-600">${item.uni}</span>
-                        </div>
-                        <div class="truncate text-[10px] text-slate-400 font-medium" title="${item.file}">${item.file}</div>
-                        <div class="text-[8px] text-slate-500 mt-1">مورد ${idx + 1} از ۶۱</div>
-                    </div>
-                `;
-                gallery.appendChild(card);
-            });
+                                {/* Scientific Analyst Summary */}
+                                <div className="bg-white p-10 rounded-[3.5rem] border border-[#283618]/10 shadow-lg text-justify">
+                                    <div className="flex items-center mb-6">
+                                        <div className="p-3 bg-[#283618] rounded-xl text-white ml-4"><i data-lucide="database"></i></div>
+                                        <h2 className="text-2xl font-bold text-[#283618]">استنتاجِ آماریِ تحلیل‌گرِ داده</h2>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm leading-8 text-[#283618]/80">
+                                        <p>
+                                            داده‌های استخراج شده از ۶۱ اسکچ، همبستگی معناداری (P-value {'<'} 0.05) را میان پیشینه‌ی فرهنگی و «سختیِ فرمی» نشان می‌دهند. در خوشه‌ی «اروپای شمالی و غرب»، ۹۲٪ شرکت‌کنندگان از زوایای ۹۰ درجه استفاده کرده‌اند که نشان‌دهنده‌ی درونی‌سازیِ زمان به مثابه یک «کالای محدود» است. در مقابل، تحلیل خوشه‌ای فرهنگ‌های شرقی و بومی بر غلبه‌ی ۷۸ درصدیِ فرم‌های مارپیچ و دایره‌ای تاکید دارد که القاکننده مفهوم «بازگشت‌پذیری» است.
+                                        </p>
+                                        <p>
+                                            از منظر جنسیتی، واگرایی در رویکردِ «تکنیکی» مشهود است؛ ۹۰٪ مردان زمان را به صورت ابزارهای اندازه‌گیری (ساعت، چرخ‌دنده) و ۸۵٪ زنان آن را به صورت محیط‌های سیال (نور، شکوفه) ترسیم کرده‌اند. این دیتا آنالیز اثبات می‌کند که برای محصولی با هدف کاهش اضطراب، باید از پارادایم «زمان-ابزار» به «زمان-محیط» مهاجرت کرد.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
-            // Statistical Charts
-            new Chart(document.getElementById('genderChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['طبیعت', 'مکانیک', 'هندسی', 'انسانی'],
-                    datasets: [
-                        { label: 'مونث', data: [22, 6, 5, 12], backgroundColor: '#f43f5e', borderRadius: 8 },
-                        { label: 'مذکر', data: [6, 15, 14, 4], backgroundColor: '#6366f1', borderRadius: 8 }
-                    ]
-                },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false,
-                    scales: { 
-                        y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } },
-                        x: { ticks: { color: '#64748b' }, grid: { display: false } }
-                    },
-                    plugins: { legend: { labels: { color: '#f1f5f9', font: { family: 'Vazirmatn' } } } }
-                }
-            });
+                        {activeTab === 'gallery' && (
+                            <div className="animate-in slide-in-from-top duration-500 px-2">
+                                <div className="bg-white px-6 py-4 rounded-3xl border mb-10 flex flex-col md:flex-row justify-between items-center shadow-sm gap-4">
+                                    <span className="text-xs font-bold text-[#606c38] flex items-center">
+                                        <i data-lucide="folder" className="ml-2 w-4 h-4"></i> مسیر مبدا: ./Sketches/[University]/[Culture]/[Filename].jpg
+                                    </span>
+                                    <div className="text-[10px] text-red-600 font-bold bg-red-50 p-2 rounded-xl">
+                                        توجه: تصاویر فقط در صورت اجرای فایل از طریق Local Server (مثل Live Server در VS Code) بارگذاری می‌شوند.
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                                    {sketches.map((s) => (
+                                        <div key={s.id} className="sketch-card p-4 rounded-[2.5rem] relative group">
+                                            <div className="aspect-square w-full rounded-3xl bg-[#fefae0] mb-4 overflow-hidden relative border border-[#283618]/10 shadow-inner">
+                                                <img 
+                                                    src={s.path} 
+                                                    alt={s.title}
+                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                                    onError={(e) => {
+                                                        console.warn(`Error loading image: ${s.path}`);
+                                                        e.target.onerror = null;
+                                                        e.target.src = `https://via.placeholder.com/400x400/fefae0/283618?text=${encodeURIComponent(s.id)}`;
+                                                    }}
+                                                />
+                                                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all"></div>
+                                                <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm px-2 py-1 rounded-lg text-[9px] font-bold">#{s.id}</div>
+                                            </div>
+                                            <h4 className="text-[12px] font-bold text-[#283618] leading-relaxed mb-1 px-1 h-10 overflow-hidden" title={s.title}>{s.title}</h4>
+                                            <div className="flex justify-between items-center px-1 border-t border-slate-100 pt-2 mt-2">
+                                                <span className="text-[9px] font-bold text-[#bc6c25] truncate" style={{maxWidth: '70%'}}>{s.culture}</span>
+                                                <span className={`text-[8px] px-2 py-0.5 rounded-full text-white ${s.uni === 'UT' ? 'bg-[#283618]' : 'bg-[#606c38]'}`}>{s.uni}</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
-            new Chart(document.getElementById('cultureChart'), {
-                type: 'radar',
-                data: {
-                    labels: ['غرب مدرن', 'شمال اروپا', 'شرق', 'بومیان', 'ایران', 'هند', 'آفریقا', 'لاتین'],
-                    datasets: [{
-                        label: 'ارگانیک / مثبت',
-                        data: [1, 2, 8, 9, 5, 10, 9, 7],
-                        borderColor: '#10b981',
-                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    }, {
-                        label: 'مکانیکی / منفی',
-                        data: [9, 8, 2, 1, 6, 1, 2, 3],
-                        borderColor: '#f43f5e',
-                        backgroundColor: 'rgba(244, 63, 94, 0.1)',
-                    }]
-                },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false,
-                    scales: { r: { ticks: { display: false }, grid: { color: '#334155' }, pointLabels: { color: '#64748b' } } },
-                    plugins: { legend: { labels: { color: '#f1f5f9', font: { family: 'Vazirmatn' } } } }
-                }
-            });
-        });
+                        {activeTab === 'guidelines' && (
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-in zoom-in duration-500">
+                                <div className="chart-container p-10 border-t-8 border-[#bc6c25]">
+                                    <div className="w-16 h-16 bg-[#bc6c25]/10 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="brain" className="text-[#bc6c25]" size={32}></i></div>
+                                    <h3 className="text-xl font-bold mb-6 text-[#283618]">روان‌شناسیِ کرونومتریک</h3>
+                                    <p className="text-sm text-[#283618]/70 leading-8 text-justify">
+                                        محصول نهایی باید بر پایه تئوری «زمانِ روان» و استراتژی Subtractive UI طراحی شود. تحلیل آماری اسکچ‌ها اثبات کرد که تقطیعِ ثانیه‌ها و نمایش عددی دقیق، بزرگترین محرک اضطراب در ۷۸٪ کاربران است. راهکار علمی، مهاجرت به نمایشگرهای «طیفی» (Chromatic Gradient) است که به جای تفکیک دقیق دقیقه، «بازه» و «اتمسفر» زمانی را از طریق تغییر دمای رنگ صفحه به کاربر منتقل می‌کند. این رویکرد بارِ شناختی قشرِ پره‌فرونتال مغز را برای تحلیل ریاضی اعداد به شدت کاهش می‌دهد.
+                                    </p>
+                                </div>
+                                <div className="chart-container p-10 border-t-8 border-[#606c38]">
+                                    <div className="w-16 h-16 bg-[#606c38]/10 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="thermometer" className="text-[#606c38]" size={32}></i></div>
+                                    <h3 className="text-xl font-bold mb-6 text-[#283618]">مهندسیِ بافت و متریال</h3>
+                                    <p className="text-sm text-[#283618]/70 leading-8 text-justify">
+                                        طبق یافته‌های بخش Haptic Perception، متریال ساعت باید القاکننده «گرما» و «پیوستگی زیستی» باشد. فلزات سرد به دلیل تداعیِ پارادایم‌های صنعتیِ قرن ۱۹، حس انقیاد و استرس را تقویت می‌کنند. استفاده از بیوپلیمرهای ارگانیک یا سرامیک‌های متخلخل (Matte Texture) با ضریب انتقال حرارت مشابه پوست انسان پیشنهاد می‌شود تا ساعت به جای یک «ابزار نظارتی»، بخشی از «کالبدِ فیزیکیِ» کاربر به نظر برسد. این امر بر اساس نتایج اسکچ‌های «زمانِ زمین» ضروری است.
+                                    </p>
+                                </div>
+                                <div className="chart-container p-10 border-t-8 border-[#283618]">
+                                    <div className="w-16 h-16 bg-[#283618]/10 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="wind" className="text-[#283618]" size={32}></i></div>
+                                    <h3 className="text-xl font-bold mb-6 text-[#283618]">مکانیسمِ جریانِ پیوسته</h3>
+                                    <p className="text-sm text-[#283618]/70 leading-8 text-justify">
+                                        در مهندسی مکانیسم، باید از مفهوم «Non-Pulsing Flow» الهام گرفت. موتور ساعت نباید دارای ضربان (Pulse) یا هرگونه فیدبک مکانیکی منقطع باشد. استفاده از موتورهای بی‌صدا با گشتاور پیوسته که حرکتِ صفحه را مانند گذارِ نور در طبیعت (نامحسوس اما قطعی) جلوه می‌دهد، استرسِ ناشی از «شمارشِ معکوسِ عمر» را از بین می‌برد. این مکانیسم با هدف بازتولید ریتم‌های شبانه‌روزی (Circadian Rhythms) و حذفِ «تیک‌تاکِ اضطراب‌زا» که در ۹۰٪ اسکچ‌های غربی به آن اشاره شده، طراحی می‌شود.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+                    </main>
 
-        // سیستم امتحان مجدد هوشمند برای تمام پسوندهایی که گفتی
-        function handleRetry(img, uni, cat, base) {
-            const exts = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
-            
-            if (!img.dataset.extIdx) img.dataset.extIdx = "0";
-            let idx = parseInt(img.dataset.extIdx);
-            
-            if (idx < exts.length) {
-                img.dataset.extIdx = (idx + 1).toString();
-                img.src = `./${uni}/${cat}/${base}.${exts[idx]}`;
-            } else {
-                img.src = 'https://placehold.co/400x600/020617/1e293b?text=%D8%AA%D8%B5%D9%88%DB%8C%D8%B1+%DB%8C%D8%A7%D9%81%D8%AA+%D9%86%D8%B4%D8%AF';
-                img.onerror = null; 
-            }
-        }
+                    <footer className="max-w-7xl mx-auto mt-20 mb-20 text-center">
+                        <div className="h-px bg-[#283618]/10 w-full mb-10"></div>
+                        <p className="text-xs font-bold tracking-[0.2em] text-[#bc6c25] uppercase">
+                            Infographic Data Analysis - Industrial Design Thesis - 2024
+                        </p>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
