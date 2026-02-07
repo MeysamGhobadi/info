@@ -38,12 +38,13 @@
 
         const GITHUB_BASE = "https://raw.githubusercontent.com/MeysamGhobadi/info/main";
 
-        // استخراج دقیق نام فایل‌ها بر اساس لیست ارسالی شما
+        // نگاشت دقیق ۶۱ فایل بر اساس لیست ارسالی
         const SKETCH_DATA = [
-            // AU
+            // AU - اروپای شمال (بدون ی)
             { id: 1, uni: "AU", culture: "اروپای شمال", file: "هنر-پسر-مجسمه.jpeg", title: "سکونِ انجمادیِ سیستم" },
             { id: 2, uni: "AU", culture: "اروپای شمال", file: "هنر-دختر-معماری.jpeg", title: "انجمادِ کرونومتریک" },
             { id: 3, uni: "AU", culture: "اروپای شمال", file: "هنر-دختر-نقاشی.jpeg", title: "نظمِ بلورینِ سرد" },
+            // AU - بقیه
             { id: 4, uni: "AU", culture: "آسیای شرقی", file: "هنر-پسر-معماری داخلی.jpeg", title: "توالیِ ارگانیکِ شکوفایی" },
             { id: 5, uni: "AU", culture: "آسیای شرقی", file: "هنر-پسر-نقاشی.jpeg", title: "دگردیسیِ فنولوژیک" },
             { id: 6, uni: "AU", culture: "آسیای شرقی", file: "هنر-دختر-معماری.jpeg", title: "میراییِ زیباشناختی" },
@@ -65,6 +66,7 @@
             { id: 22, uni: "AU", culture: "هندوستان", file: "هنر-پسر-طراحی صنعتی.jpg", title: "چرخه‌یِ دوارِ رهایی" },
             { id: 23, uni: "AU", culture: "هندوستان", file: "هنر-دختر-طراحی صنعتی.jpg", title: "واگراییِ سامساریک" },
             { id: 24, uni: "AU", culture: "هندوستان", file: "هنر-دختر-طراحی صنعتی-1.jpg", title: "چرخه‌یِ بازگشتِ ابدی" },
+            
             // UT
             { id: 25, uni: "UT", culture: "اروپای شمالی", file: "پسر-طراحی صنعتی-تهران 05.jpg", title: "تقطیعِ بصریِ انضباط" },
             { id: 26, uni: "UT", culture: "اروپای شمالی", file: "دختر-طراحی صنعتی-تهران01.jpeg", title: "تقطیعِ انضباطی" },
@@ -72,7 +74,7 @@
             { id: 28, uni: "UT", culture: "اروپای شمالی", file: "دختر-نقاشی-تهران01.jpeg", title: "جامه‌یِ خاکستریِ دقت" },
             { id: 29, uni: "UT", culture: "آسیای شرقی", file: "پسر-مجسمه-تهران01.jpeg", title: "گذرِ استعلاییِ بهار" },
             { id: 30, uni: "UT", culture: "آسیای شرقی", file: "پسر-موسیقی-تهران01.jpeg", title: "گذرِ اپفانی" },
-            { id: 31, uni: "UT", culture: "دختر-طراحی صحنه-تهران01.jpeg", title: "نوشوندگیِ کیهانی" },
+            { id: 31, uni: "UT", culture: "آسیای شرقی", file: "دختر-طراحی صحنه-تهران01.jpeg", title: "نوشوندگیِ کیهانی" },
             { id: 32, uni: "UT", culture: "آسیای شرقی", file: "دختر-طراحی صنعتی-تهران08.jpeg", title: "اندوهِ مونو نو آواره" },
             { id: 33, uni: "UT", culture: "آسیای شرقی", file: "دختر-نقاشی-تهران02.JPG", title: "اندوهِ عمیقِ مونو" },
             { id: 34, uni: "UT", culture: "آفریقا", file: "پسر-طراحی صنعتی-تهران01.jpeg", title: "حضورِ ترانسندنتالِ اسلاف" },
@@ -135,14 +137,14 @@
                 <div className="min-h-screen p-6 md:p-12 max-w-7xl mx-auto">
                     <header className="mb-24 text-center">
                         <h1 className="text-4xl md:text-6xl font-bold text-[#283618] mb-6 tracking-tight">واکاویِ فنومنولوژیکِ ادراکِ زمان</h1>
-                        <p className="text-xl text-[#606c38] max-w-3xl mx-auto opacity-90">گزارش تجمیعی تحلیل ۶۱ اسکیس دانشجویی و تدوین مبانی طراحی ساعت غیرقطعی.</p>
+                        <p className="text-xl text-[#606c38] max-w-3xl mx-auto opacity-90">گزارش تجمیعی تحلیل ۶۱ اسکیس دانشجویی و تدوین اصول طراحی ساعت مچی غیرقطعی.</p>
                     </header>
 
                     <div className="space-y-32">
-                        {/* Section 1: Charts */}
+                        {/* Section 1: Analysis */}
                         <section>
                             <h2 className="text-3xl font-bold text-[#283618] section-title flex items-center">
-                                <i data-lucide="line-chart" className="ml-3 text-[#bc6c25]"></i> لایه اول: تحلیل آماری و بصری
+                                <i data-lucide="line-chart" className="ml-3 text-[#bc6c25]"></i> لایه اول: تحلیل آماری و بصری داده‌ها
                             </h2>
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                 <div className="chart-container p-8">
@@ -202,7 +204,7 @@
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-8">
                                     <p>داده‌های استخراج شده از ۶۱ اسکچ، همبستگی معناداری (P-value {'<'} 0.05) را میان پیشینه‌ی فرهنگی و «سختیِ فرمی» نشان می‌دهند. در خوشه‌ی غرب، ۹۲٪ شرکت‌کنندگان از زوایای ۹۰ درجه استفاده کرده‌اند که نشان‌دهنده‌ی درونی‌سازیِ زمان به مثابه یک کالای محدود است. در مقابل، فرهنگ‌های شرقی بر غلبه‌ی ۷۸ درصدیِ فرم‌های مارپیچ تاکید دارند.</p>
-                                    <p>از منظر جنسیتی، ۹۰٪ مردان زمان را به صورت ابزارهای اندازه‌گیری و ۸۵٪ زنان آن را به صورت محیط‌های سیال ترسیم کرده‌اند. این تحلیل اثبات می‌کند که برای کاهش اضطراب، باید از پارادایم «زمان-ابزار» به «زمان-محیط» مهاجرت کرد.</p>
+                                    <p>از منظر جنسیتی، واگرایی در رویکردِ «تکنیکی» مشهود است؛ ۹۰٪ مردان زمان را به صورت ابزارهای اندازه‌گیری و ۸۵٪ زنان آن را به صورت محیط‌های سیال ترسیم کرده‌اند. این تحلیل اثبات می‌کند که برای کاهش اضطراب، باید از پارادایم «زمان-ابزار» به «زمان-محیط» مهاجرت کرد.</p>
                                 </div>
                             </div>
                         </section>
@@ -227,7 +229,7 @@
                                             />
                                             <div className="hidden absolute inset-0 items-center justify-center text-[#283618]/30 flex-col p-4 text-center">
                                                 <i data-lucide="image-off" size={24} className="mb-2"></i>
-                                                <span className="text-[8px] leading-tight font-bold">فایل یافت نشد<br/>({s.file})</span>
+                                                <span className="text-[8px] leading-tight font-bold">یافت نشد<br/>({s.file})</span>
                                             </div>
                                             <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-[9px] font-bold shadow-sm">
                                                 #{s.id}
