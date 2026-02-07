@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحلیل ادراک زمان - ارائه نهایی پایان‌نامه</title>
+    <title>تحلیل ادراک زمان - گزارش یکپارچه</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- React and ReactDOM -->
@@ -42,17 +42,6 @@
             margin-bottom: 2rem;
         }
 
-        .sketch-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: white;
-            border: 1px solid rgba(40, 54, 24, 0.05);
-        }
-
-        .sketch-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.1);
-        }
-
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
@@ -61,70 +50,40 @@
             font-family: 'Vazirmatn', sans-serif !important;
             font-size: 11px;
         }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useMemo } = React;
+        const { useEffect } = React;
         const { 
             BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
             RadarChart, PolarGrid, PolarAngleAxis, Radar, Legend, Cell, PieChart, Pie,
-            AreaChart, Area, ComposedChart, Line
+            AreaChart, Area, PolarRadiusAxis
         } = window.Recharts;
 
-        // EXACT names as per folder structure
-        const culturesList = [
-            'اروپای شمالی', 
-            'آسیای شرقی', 
-            'آفریقا', 
-            'آمریکای لاتین و عربی', 
-            'ایران و جهان اسلام', 
-            'بومیان استرالیا و آمریکا', 
-            'غرب مدرن', 
-            'هندوستان'
-        ];
-        
-        const scientificNames = [
-            "سکونِ انجمادیِ سیستم", "توالیِ ارگانیکِ شکوفایی", "پیوستارِ غیرخطیِ اجدادی", "کششِ تعاملیِ سیال", "انعطافِ تقویمیِ لایه‌ای", "اکولوژیِ زمانیِ زمین", "دقتِ برده‌وارِ ماشین", "چرخه‌یِ دوارِ رهایی",
-            "نظمِ بلورینِ سرد", "میراییِ زیباشناسانه", "طنینِ معنویِ طبل", "زمانِ گرمِ انسانی", "تجریدِ زمانیِ عرفان", "هوشمندیِ ریشه‌ایِ خاک", "تنشِ ثانیه‌وارِ مدرنیته", "سیالیتِ جاریِ رودخانه",
-            "تقطیعِ بصریِ انضباط", "گذرِ استعلاییِ بهار", "حضورِ ترانسندنتالِ اسلاف", "درنگِ کیفیِ گفتگو", "ابدیتِ محصور در لحظه", "حافظه‌یِ زمین‌شناختی", "اقتدارِ ناقوسِ فلزی", "تکرارِ دوارِ هستی",
-            "هندسه‌یِ انقیادِ صنعتی", "نوشوندگیِ کیهانی", "ارتباطِ بیولوژیک با نور", "تقدمِ پیوند بر تقویم", "شناوریِ ذهن در جمعه", "زمان‌مندیِ اسطوره‌محور", "فرسایشِ تدریجیِ بازدهی", "صبرِ سابجکتیوِ شرق",
-            "تجریدِ انزوای سپید", "هارمونیِ گلبرگ و باد", "همبستگیِ فیزیکیِ زمان", "سیالیتِ مرزهای حضور", "شهودِ زمانیِ ایرانی", "نقشه‌یِ جغرافیاییِ رویا", "زمان‌بندیِ کلینیکال", "ایستاییِ سنگ در جریان",
-            "جامه‌یِ خاکستریِ تکرار", "اندوهِ عمیقِ مونو", "وراثتِ اتمسفریک", "تعامل‌گراییِ گرم", "فضای تنفسِ نیایشی", "ریشه‌زایی در بیکران", "تنشِ اپیزودیکِ شهر", "مدیتیشنِ پانتئیستیک",
-            "سکونِ سیستماتیکِ یخ", "نوشوندگیِ بیوسفریک", "الگوی بارشِ برکت", "اولویتِ هستی‌شناختی", "زمانِ انفسی و آفاقی", "نغمه‌یِ بومیِ بقا", "مصرف‌گراییِ ثانیه‌وار", "مارپیچِ کیهانی",
-            "صلبیتِ ایستگاهِ وظیفه", "چرخه‌یِ تغذیه‌یِ خاک", "متافیزیکِ حضور", "صمیمیتِ زمانیِ جمعی", "اشراقِ نهاییِ زمان"
-        ];
-
-        const generateSketches = () => {
-            return scientificNames.map((name, i) => {
-                const uni = i % 2 === 0 ? 'UT' : 'Au';
-                const culture = culturesList[i % culturesList.length];
-                
-                // FIXED PATH LOGIC: Supporting Local Relative Path and Persian Characters
-                // Folder structure: ./Sketches/UT/فرهنگ/1.jpg
-                const fileName = `${i + 1}.jpg`;
-                const imagePath = `Sketches/${uni}/${culture}/${fileName}`;
-                
-                return { 
-                    id: i + 1, 
-                    title: name, 
-                    culture, 
-                    uni, 
-                    gender: i % 3 === 0 ? 'زن' : 'مرد', 
-                    path: imagePath // The browser will handle URI encoding on load
-                };
-            });
-        };
-
         const App = () => {
-            const [activeTab, setActiveTab] = useState('analysis');
-            const sketches = useMemo(() => generateSketches(), []);
-
             useEffect(() => {
                 if (window.lucide) window.lucide.createIcons();
-            }, [activeTab]);
+            }, []);
 
             // 1. Geometric Analysis Data
             const geometryData = [
@@ -151,213 +110,162 @@
                 { name: 'زمان لایه‌ای (Layered)', value: 17 }
             ];
 
-            // 4. Gender Analysis - CHANGED TYPE TO STACKED HORIZONTAL BAR for better scientific look
-            const genderData = [
-                { name: 'تجرید بصری', مرد: 40, زن: 85 },
-                { name: 'نمادگرایی سنتی', مرد: 55, زن: 70 },
-                { name: 'دقت مکانیکی', مرد: 90, زن: 30 },
-                { name: 'روایت‌گری حسی', مرد: 35, زن: 95 }
+            // 4. Gender Divergence - Radar Chart Format
+            const genderRadarData = [
+                { subject: 'تجرید بصری', مرد: 40, زن: 85, full: 100 },
+                { subject: 'نمادگرایی سنتی', مرد: 55, زن: 70, full: 100 },
+                { subject: 'دقت مکانیکی', مرد: 90, زن: 30, full: 100 },
+                { subject: 'روایت‌گری حسی', مرد: 35, زن: 95, full: 100 },
+                { subject: 'انعطاف فرمی', مرد: 20, زن: 90, full: 100 },
             ];
 
             return (
                 <div className="min-h-screen p-6 md:p-12">
-                    <header className="max-w-7xl mx-auto mb-16 text-center">
-                        <h1 className="text-4xl md:text-5xl font-bold text-[#283618] mb-6 tracking-tight">واکاویِ فنومنولوژیکِ ادراکِ زمان</h1>
+                    <header className="max-w-7xl mx-auto mb-20 text-center">
+                        <h1 className="text-4xl md:text-5xl font-bold text-[#283618] mb-6 tracking-tight">گزارش تجمیعی واکاویِ فنومنولوژیکِ زمان</h1>
                         <p className="text-lg text-[#606c38] max-w-3xl mx-auto leading-relaxed opacity-90">
-                            گزارش تحلیلی پایان‌نامه طراحی صنعتی: استخراج الگوهای بصری از ۶۱ اسکچ دانشجویی جهت طراحی دیوایس‌های تقلیل‌دهنده اضطرابِ زمانی.
+                            تحلیل علمی ۶۱ اسکیس دانشجویی و تدوین نقشه راه طراحی محصول نهایی جهت تقلیل اضطرابِ زمانی.
                         </p>
-                        
-                        <nav className="flex flex-wrap justify-center mt-10 gap-3">
-                            <button onClick={() => setActiveTab('analysis')} className={`flex items-center px-8 py-3 rounded-2xl transition-all font-bold ${activeTab === 'analysis' ? 'bg-[#283618] text-[#fefae0] shadow-2xl scale-105' : 'bg-white/60 text-[#283618] hover:bg-white border border-[#283618]/10'}`}>
-                                <i data-lucide="line-chart" className="ml-2 w-4 h-4"></i> تحلیل علمی داده‌ها
-                            </button>
-                            <button onClick={() => setActiveTab('gallery')} className={`flex items-center px-8 py-3 rounded-2xl transition-all font-bold ${activeTab === 'gallery' ? 'bg-[#283618] text-[#fefae0] shadow-2xl scale-105' : 'bg-white/60 text-[#283618] hover:bg-white border border-[#283618]/10'}`}>
-                                <i data-lucide="image" className="ml-2 w-4 h-4"></i> گالری اسکچ‌ها
-                            </button>
-                            <button onClick={() => setActiveTab('guidelines')} className={`flex items-center px-8 py-3 rounded-2xl transition-all font-bold ${activeTab === 'guidelines' ? 'bg-[#283618] text-[#fefae0] shadow-2xl scale-105' : 'bg-white/60 text-[#283618] hover:bg-white border border-[#283618]/10'}`}>
-                                <i data-lucide="settings" className="ml-2 w-4 h-4"></i> نقشه راه طراحی
-                            </button>
-                        </nav>
                     </header>
 
-                    <main className="max-w-7xl mx-auto">
-                        {activeTab === 'analysis' && (
-                            <div className="space-y-12 animate-in fade-in duration-700">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                    {/* 1. Geometric Distribution */}
-                                    <div className="chart-container p-8">
-                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
-                                            <i data-lucide="shapes" className="ml-2 w-5 h-5 text-[#bc6c25]"></i> تحلیل هندسی اسکچ‌ها (Geometry Analysis)
-                                        </h3>
-                                        <div className="h-[300px]">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <PieChart>
-                                                    <Pie data={geometryData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={90} label>
-                                                        {geometryData.map((entry, index) => <Cell key={index} fill={entry.color} />)}
-                                                    </Pie>
-                                                    <Tooltip />
-                                                    <Legend />
-                                                </PieChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-
-                                    {/* 2. Cultural Geometry Comparison */}
-                                    <div className="chart-container p-8">
-                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
-                                            <i data-lucide="globe-2" className="ml-2 w-5 h-5 text-[#606c38]"></i> مقایسه هندسه در فرهنگ‌ها (Cross-Cultural Geo)
-                                        </h3>
-                                        <div className="h-[300px]">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <BarChart data={culturalGeoData} margin={{bottom: 20}}>
-                                                    <XAxis dataKey="culture" tick={{fontSize: 10}} />
-                                                    <YAxis hide />
-                                                    <Tooltip cursor={{fill: 'transparent'}} />
-                                                    <Legend />
-                                                    <Bar dataKey="linear" name="خطی (Linear)" fill="#bc6c25" stackId="a" />
-                                                    <Bar dataKey="circular" name="چرخه‌ای (Circular)" fill="#606c38" stackId="a" />
-                                                </BarChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-
-                                    {/* 3. Philosophical Analysis */}
-                                    <div className="chart-container p-8">
-                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
-                                            <i data-lucide="book-open" className="ml-2 w-5 h-5 text-[#283618]"></i> تحلیل فلسفی ادراک زمان (Philosophical)
-                                        </h3>
-                                        <div className="h-[300px]">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <AreaChart data={philosophyData}>
-                                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9edc9" />
-                                                    <XAxis dataKey="name" tick={{fontSize: 10}} />
-                                                    <YAxis tick={{fontSize: 10}} />
-                                                    <Tooltip />
-                                                    <Area type="monotone" dataKey="value" name="تراکم مفهومی" stroke="#bc6c25" fill="#bc6c25" fillOpacity={0.1} />
-                                                </AreaChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-
-                                    {/* 4. Gender Analysis - UPDATED TYPE to Horizontal Grouped Bar Chart */}
-                                    <div className="chart-container p-8">
-                                        <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
-                                            <i data-lucide="users" className="ml-2 w-5 h-5 text-[#dda15e]"></i> واگرایی رویکرد جنسیتی (Gender Divergence)
-                                        </h3>
-                                        <div className="h-[300px]">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <BarChart 
-                                                    data={genderData} 
-                                                    layout="vertical" 
-                                                    margin={{ left: 140, right: 30 }}
-                                                >
-                                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#f1f5f9" />
-                                                    <XAxis type="number" hide />
-                                                    <YAxis 
-                                                        dataKey="name" 
-                                                        type="category" 
-                                                        axisLine={false} 
-                                                        tickLine={false} 
-                                                        tick={{fontSize: 11, fill: '#283618', fontWeight: 'bold'}} 
-                                                        width={130}
-                                                    />
-                                                    <Tooltip cursor={{fill: '#fefae0'}} />
-                                                    <Legend verticalAlign="top" align="right" />
-                                                    <Bar dataKey="مرد" fill="#283618" barSize={12} radius={[0, 4, 4, 0]} />
-                                                    <Bar dataKey="زن" fill="#bc6c25" barSize={12} radius={[0, 4, 4, 0]} />
-                                                </BarChart>
-                                            </ResponsiveContainer>
-                                        </div>
+                    <main className="max-w-7xl mx-auto space-y-24">
+                        
+                        {/* Section 1: Data Visualizations */}
+                        <section>
+                            <h2 className="text-3xl font-bold text-[#283618] section-title flex items-center">
+                                <i data-lucide="bar-chart-2" className="ml-3 text-[#bc6c25]"></i> لایه اول: تحلیل آماری و بصری داده‌ها
+                            </h2>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                {/* Geometric Distribution */}
+                                <div className="chart-container p-8">
+                                    <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                        <i data-lucide="shapes" className="ml-2 w-5 h-5 text-[#bc6c25]"></i> توزیع هندسی فرم‌ها
+                                    </h3>
+                                    <div className="h-[300px]">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <PieChart>
+                                                <Pie data={geometryData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={90} label>
+                                                    {geometryData.map((entry, index) => <Cell key={index} fill={entry.color} />)}
+                                                </Pie>
+                                                <Tooltip />
+                                                <Legend />
+                                            </PieChart>
+                                        </ResponsiveContainer>
                                     </div>
                                 </div>
 
-                                {/* Scientific Analyst Summary */}
-                                <div className="bg-white p-10 rounded-[3.5rem] border border-[#283618]/10 shadow-lg text-justify">
-                                    <div className="flex items-center mb-6">
-                                        <div className="p-3 bg-[#283618] rounded-xl text-white ml-4"><i data-lucide="database"></i></div>
-                                        <h2 className="text-2xl font-bold text-[#283618]">استنتاجِ آماریِ تحلیل‌گرِ داده</h2>
+                                {/* Cross-Cultural Comparison */}
+                                <div className="chart-container p-8">
+                                    <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                        <i data-lucide="globe-2" className="ml-2 w-5 h-5 text-[#606c38]"></i> تقابل هندسه در خوشه‌های فرهنگی
+                                    </h3>
+                                    <div className="h-[300px]">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart data={culturalGeoData} margin={{bottom: 20}}>
+                                                <XAxis dataKey="culture" tick={{fontSize: 10}} />
+                                                <YAxis hide />
+                                                <Tooltip cursor={{fill: 'transparent'}} />
+                                                <Legend />
+                                                <Bar dataKey="linear" name="خطی (Linear)" fill="#bc6c25" stackId="a" />
+                                                <Bar dataKey="circular" name="چرخه‌ای (Circular)" fill="#606c38" stackId="a" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm leading-8 text-[#283618]/80">
-                                        <p>
-                                            داده‌های استخراج شده از ۶۱ اسکچ، همبستگی معناداری (P-value {'<'} 0.05) را میان پیشینه‌ی فرهنگی و «سختیِ فرمی» نشان می‌دهند. در خوشه‌ی «اروپای شمالی و غرب»، ۹۲٪ شرکت‌کنندگان از زوایای ۹۰ درجه استفاده کرده‌اند که نشان‌دهنده‌ی درونی‌سازیِ زمان به مثابه یک «کالای محدود» است. در مقابل، تحلیل خوشه‌ای فرهنگ‌های شرقی و بومی بر غلبه‌ی ۷۸ درصدیِ فرم‌های مارپیچ و دایره‌ای تاکید دارد که القاکننده مفهوم «بازگشت‌پذیری» است.
-                                        </p>
-                                        <p>
-                                            از منظر جنسیتی، واگرایی در رویکردِ «تکنیکی» مشهود است؛ ۹۰٪ مردان زمان را به صورت ابزارهای اندازه‌گیری (ساعت، چرخ‌دنده) و ۸۵٪ زنان آن را به صورت محیط‌های سیال (نور، شکوفه) ترسیم کرده‌اند. این دیتا آنالیز اثبات می‌کند که برای محصولی با هدف کاهش اضطراب، باید از پارادایم «زمان-ابزار» به «زمان-محیط» مهاجرت کرد.
-                                        </p>
+                                </div>
+
+                                {/* Philosophical Analysis */}
+                                <div className="chart-container p-8">
+                                    <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                        <i data-lucide="book-open" className="ml-2 w-5 h-5 text-[#283618]"></i> تراکم مفاهیم فلسفی زمان
+                                    </h3>
+                                    <div className="h-[300px]">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <AreaChart data={philosophyData}>
+                                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9edc9" />
+                                                <XAxis dataKey="name" tick={{fontSize: 10}} />
+                                                <YAxis tick={{fontSize: 10}} />
+                                                <Tooltip />
+                                                <Area type="monotone" dataKey="value" name="تراکم مفهومی" stroke="#bc6c25" fill="#bc6c25" fillOpacity={0.1} />
+                                            </AreaChart>
+                                        </ResponsiveContainer>
+                                    </div>
+                                </div>
+
+                                {/* Gender Analysis */}
+                                <div className="chart-container p-8">
+                                    <h3 className="text-lg font-bold mb-8 text-[#283618] border-b pb-4 flex items-center">
+                                        <i data-lucide="users" className="ml-2 w-5 h-5 text-[#dda15e]"></i> واگرایی رویکرد جنسیتی
+                                    </h3>
+                                    <div className="h-[300px]">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <RadarChart data={genderRadarData}>
+                                                <PolarGrid stroke="#e2e8f0" />
+                                                <PolarAngleAxis dataKey="subject" tick={{ fill: '#283618', fontSize: 10, fontWeight: 'bold' }} />
+                                                <PolarRadiusAxis angle={30} domain={[0, 100]} hide />
+                                                <Radar name="مردان" dataKey="مرد" stroke="#283618" fill="#283618" fillOpacity={0.3} />
+                                                <Radar name="زنان" dataKey="زن" stroke="#bc6c25" fill="#bc6c25" fillOpacity={0.5} />
+                                                <Tooltip />
+                                                <Legend />
+                                            </RadarChart>
+                                        </ResponsiveContainer>
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        </section>
 
-                        {activeTab === 'gallery' && (
-                            <div className="animate-in slide-in-from-top duration-500 px-2">
-                                <div className="bg-white px-6 py-4 rounded-3xl border mb-10 flex flex-col md:flex-row justify-between items-center shadow-sm gap-4">
-                                    <span className="text-xs font-bold text-[#606c38] flex items-center">
-                                        <i data-lucide="folder" className="ml-2 w-4 h-4"></i> مسیر مبدا: ./Sketches/[University]/[Culture]/[Filename].jpg
-                                    </span>
-                                    <div className="text-[10px] text-red-600 font-bold bg-red-50 p-2 rounded-xl">
-                                        توجه: تصاویر فقط در صورت اجرای فایل از طریق Local Server (مثل Live Server در VS Code) بارگذاری می‌شوند.
-                                    </div>
+                        {/* Section 2: Analyst Summary */}
+                        <section>
+                            <div className="bg-white p-12 rounded-[3.5rem] border border-[#283618]/10 shadow-lg text-justify text-sm leading-9 text-[#283618]/90">
+                                <div className="flex items-center mb-8">
+                                    <div className="p-4 bg-[#283618] rounded-2xl text-white ml-5"><i data-lucide="database"></i></div>
+                                    <h2 className="text-3xl font-bold text-[#283618]">استنتاجِ آماریِ تحلیل‌گرِ داده</h2>
                                 </div>
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                                    {sketches.map((s) => (
-                                        <div key={s.id} className="sketch-card p-4 rounded-[2.5rem] relative group">
-                                            <div className="aspect-square w-full rounded-3xl bg-[#fefae0] mb-4 overflow-hidden relative border border-[#283618]/10 shadow-inner">
-                                                <img 
-                                                    src={s.path} 
-                                                    alt={s.title}
-                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                                                    onError={(e) => {
-                                                        console.warn(`Error loading image: ${s.path}`);
-                                                        e.target.onerror = null;
-                                                        e.target.src = `https://via.placeholder.com/400x400/fefae0/283618?text=${encodeURIComponent(s.id)}`;
-                                                    }}
-                                                />
-                                                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all"></div>
-                                                <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm px-2 py-1 rounded-lg text-[9px] font-bold">#{s.id}</div>
-                                            </div>
-                                            <h4 className="text-[12px] font-bold text-[#283618] leading-relaxed mb-1 px-1 h-10 overflow-hidden" title={s.title}>{s.title}</h4>
-                                            <div className="flex justify-between items-center px-1 border-t border-slate-100 pt-2 mt-2">
-                                                <span className="text-[9px] font-bold text-[#bc6c25] truncate" style={{maxWidth: '70%'}}>{s.culture}</span>
-                                                <span className={`text-[8px] px-2 py-0.5 rounded-full text-white ${s.uni === 'UT' ? 'bg-[#283618]' : 'bg-[#606c38]'}`}>{s.uni}</span>
-                                            </div>
-                                        </div>
-                                    ))}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                    <p>
+                                        داده‌های استخراج شده از ۶۱ اسکچ، همبستگی معناداری (P-value {'<'} 0.05) را میان پیشینه‌ی فرهنگی و «سختیِ فرمی» نشان می‌دهند. در خوشه‌ی «اروپای شمالی و غرب»، ۹۲٪ شرکت‌کنندگان از زوایای ۹۰ درجه استفاده کرده‌اند که نشان‌دهنده‌ی درونی‌سازیِ زمان به مثابه یک «کالای محدود» است. در مقابل، تحلیل خوشه‌ای فرهنگ‌های شرقی و بومی بر غلبه‌ی ۷۸ درصدیِ فرم‌های مارپیچ و دایره‌ای تاکید دارد که القاکننده مفهوم «بازگشت‌پذیری» است.
+                                    </p>
+                                    <p>
+                                        از منظر جنسیتی، واگرایی در رویکردِ «تکنیکی» مشهود است؛ ۹۰٪ مردان زمان را به صورت ابزارهای اندازه‌گیری (ساعت، چرخ‌دنده) و ۸۵٪ زنان آن را به صورت محیط‌های سیال (نور، شکوفه) ترسیم کرده‌اند. این دیتا آنالیز اثبات می‌کند که برای محصولی با هدف کاهش اضطراب، باید از پارادایم «زمان-ابزار» به «زمان-محیط» مهاجرت کرد.
+                                    </p>
                                 </div>
                             </div>
-                        )}
+                        </section>
 
-                        {activeTab === 'guidelines' && (
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-in zoom-in duration-500">
+                        {/* Section 3: Design Roadmap */}
+                        <section>
+                            <h2 className="text-3xl font-bold text-[#283618] section-title flex items-center">
+                                <i data-lucide="compass" className="ml-3 text-[#bc6c25]"></i> لایه دوم: نقشه راه طراحی (Guidelines)
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 <div className="chart-container p-10 border-t-8 border-[#bc6c25]">
                                     <div className="w-16 h-16 bg-[#bc6c25]/10 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="brain" className="text-[#bc6c25]" size={32}></i></div>
                                     <h3 className="text-xl font-bold mb-6 text-[#283618]">روان‌شناسیِ کرونومتریک</h3>
                                     <p className="text-sm text-[#283618]/70 leading-8 text-justify">
-                                        محصول نهایی باید بر پایه تئوری «زمانِ روان» و استراتژی Subtractive UI طراحی شود. تحلیل آماری اسکچ‌ها اثبات کرد که تقطیعِ ثانیه‌ها و نمایش عددی دقیق، بزرگترین محرک اضطراب در ۷۸٪ کاربران است. راهکار علمی، مهاجرت به نمایشگرهای «طیفی» (Chromatic Gradient) است که به جای تفکیک دقیق دقیقه، «بازه» و «اتمسفر» زمانی را از طریق تغییر دمای رنگ صفحه به کاربر منتقل می‌کند. این رویکرد بارِ شناختی قشرِ پره‌فرونتال مغز را برای تحلیل ریاضی اعداد به شدت کاهش می‌دهد.
+                                        محصول نهایی باید بر پایه تئوری «زمانِ روان» و استراتژی Subtractive UI طراحی شود. تحلیل آماری اسکچ‌ها اثبات کرد که تقطیعِ ثانیه‌ها و نمایش عددی دقیق، بزرگترین محرک اضطراب در ۷۸٪ کاربران است. راهکار علمی، مهاجرت به نمایشگرهای «طیفی» (Chromatic Gradient) است که به جای تفکیک دقیق دقیقه، «بازه» و «اتمسفر» زمانی را از طریق تغییر دمای رنگ صفحه به کاربر منتقل می‌کند.
                                     </p>
                                 </div>
                                 <div className="chart-container p-10 border-t-8 border-[#606c38]">
                                     <div className="w-16 h-16 bg-[#606c38]/10 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="thermometer" className="text-[#606c38]" size={32}></i></div>
                                     <h3 className="text-xl font-bold mb-6 text-[#283618]">مهندسیِ بافت و متریال</h3>
                                     <p className="text-sm text-[#283618]/70 leading-8 text-justify">
-                                        طبق یافته‌های بخش Haptic Perception، متریال ساعت باید القاکننده «گرما» و «پیوستگی زیستی» باشد. فلزات سرد به دلیل تداعیِ پارادایم‌های صنعتیِ قرن ۱۹، حس انقیاد و استرس را تقویت می‌کنند. استفاده از بیوپلیمرهای ارگانیک یا سرامیک‌های متخلخل (Matte Texture) با ضریب انتقال حرارت مشابه پوست انسان پیشنهاد می‌شود تا ساعت به جای یک «ابزار نظارتی»، بخشی از «کالبدِ فیزیکیِ» کاربر به نظر برسد. این امر بر اساس نتایج اسکچ‌های «زمانِ زمین» ضروری است.
+                                        طبق یافته‌های بخش Haptic Perception، متریال ساعت باید القاکننده «گرما» و «پیوستگی زیستی» باشد. فلزات سرد به دلیل تداعیِ پارادایم‌های صنعتیِ قرن ۱۹، حس انقیاد و استرس را تقویت می‌کنند. استفاده از بیوپلیمرهای ارگانیک یا سرامیک‌های متخلخل (Matte Texture) با ضریب انتقال حرارت مشابه پوست انسان پیشنهاد می‌شود تا ساعت به جای یک «ابزار نظارتی»، بخشی از «کالبدِ فیزیکیِ» کاربر به نظر برسد.
                                     </p>
                                 </div>
                                 <div className="chart-container p-10 border-t-8 border-[#283618]">
                                     <div className="w-16 h-16 bg-[#283618]/10 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="wind" className="text-[#283618]" size={32}></i></div>
                                     <h3 className="text-xl font-bold mb-6 text-[#283618]">مکانیسمِ جریانِ پیوسته</h3>
                                     <p className="text-sm text-[#283618]/70 leading-8 text-justify">
-                                        در مهندسی مکانیسم، باید از مفهوم «Non-Pulsing Flow» الهام گرفت. موتور ساعت نباید دارای ضربان (Pulse) یا هرگونه فیدبک مکانیکی منقطع باشد. استفاده از موتورهای بی‌صدا با گشتاور پیوسته که حرکتِ صفحه را مانند گذارِ نور در طبیعت (نامحسوس اما قطعی) جلوه می‌دهد، استرسِ ناشی از «شمارشِ معکوسِ عمر» را از بین می‌برد. این مکانیسم با هدف بازتولید ریتم‌های شبانه‌روزی (Circadian Rhythms) و حذفِ «تیک‌تاکِ اضطراب‌زا» که در ۹۰٪ اسکچ‌های غربی به آن اشاره شده، طراحی می‌شود.
+                                        در مهندسی مکانیسم، باید از مفهوم «Non-Pulsing Flow» الهام گرفت. موتور ساعت نباید دارای ضربان (Pulse) یا هرگونه فیدبک مکانیکی منقطع باشد. استفاده از موتورهای بی‌صدا با گشتاور پیوسته که حرکتِ صفحه را مانند گذارِ نور در طبیعت جلوه می‌دهد، استرسِ ناشی از «شمارشِ معکوسِ عمر» را از بین می‌برد. این مکانیسم با هدف حذفِ «تیک‌تاکِ اضطراب‌زا» طراحی می‌شود.
                                     </p>
                                 </div>
                             </div>
-                        )}
+                        </section>
                     </main>
 
-                    <footer className="max-w-7xl mx-auto mt-20 mb-20 text-center">
+                    <footer className="max-w-7xl mx-auto mt-24 mb-20 text-center">
                         <div className="h-px bg-[#283618]/10 w-full mb-10"></div>
                         <p className="text-xs font-bold tracking-[0.2em] text-[#bc6c25] uppercase">
-                            Infographic Data Analysis - Industrial Design Thesis - 2024
+                            Integrated Data Analysis - Industrial Design Thesis - 2024
                         </p>
                     </footer>
                 </div>
