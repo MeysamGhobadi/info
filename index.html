@@ -38,45 +38,53 @@
 
         const GITHUB_BASE = "https://raw.githubusercontent.com/MeysamGhobadi/info/main";
 
-        // نگاشت دقیق ۶۱ فایل بر اساس لیست ارسالی
+        // نگاشت دقیق ۶۱ فایل بر اساس لیست و اصلاح پوشه اروپای شمالی
         const SKETCH_DATA = [
-            // AU - اروپای شمال (بدون ی)
-            { id: 1, uni: "AU", culture: "اروپای شمال", file: "هنر-پسر-مجسمه.jpeg", title: "سکونِ انجمادیِ سیستم" },
-            { id: 2, uni: "AU", culture: "اروپای شمال", file: "هنر-دختر-معماری.jpeg", title: "انجمادِ کرونومتریک" },
-            { id: 3, uni: "AU", culture: "اروپای شمال", file: "هنر-دختر-نقاشی.jpeg", title: "نظمِ بلورینِ سرد" },
-            // AU - بقیه
+            // AU - اصلاح نام پوشه به "اروپای شمالی" برای هماهنگی با گیت‌هاب
+            { id: 1, uni: "AU", culture: "اروپای شمالی", file: "هنر-پسر-مجسمه.jpeg", title: "سکونِ انجمادیِ سیستم" },
+            { id: 2, uni: "AU", culture: "اروپای شمالی", file: "هنر-دختر-معماری.jpeg", title: "انجمادِ کرونومتریک" },
+            { id: 3, uni: "AU", culture: "اروپای شمالی", file: "هنر-دختر-نقاشی.jpeg", title: "نظمِ بلورینِ سرد" },
+            // AU - آسیای شرقی
             { id: 4, uni: "AU", culture: "آسیای شرقی", file: "هنر-پسر-معماری داخلی.jpeg", title: "توالیِ ارگانیکِ شکوفایی" },
             { id: 5, uni: "AU", culture: "آسیای شرقی", file: "هنر-پسر-نقاشی.jpeg", title: "دگردیسیِ فنولوژیک" },
             { id: 6, uni: "AU", culture: "آسیای شرقی", file: "هنر-دختر-معماری.jpeg", title: "میراییِ زیباشناختی" },
+            // AU - آفریقا
             { id: 7, uni: "AU", culture: "آفریقا", file: "هنر-پسر-مجسمه.jpeg", title: "پیوستارِ غیرخطیِ اجدادی" },
             { id: 8, uni: "AU", culture: "آفریقا", file: "هنر-پسر-معماری.jpeg", title: "طنینِ معنویِ طبل" },
             { id: 9, uni: "AU", culture: "آفریقا", file: "هنر-پسر-معماری01.jpeg", title: "ریتمِ طنینِ آیینی" },
+            // AU - آمریکای لاتین و عربی
             { id: 10, uni: "AU", culture: "آمریکای لاتین و عربی", file: "هنر-پسر-مجسمه.jpeg", title: "کششِ تعاملیِ سیال" },
             { id: 11, uni: "AU", culture: "آمریکای لاتین و عربی", file: "هنر-دختر-معماری.jpeg", title: "زمانِ گرمِ انسانی" },
             { id: 12, uni: "AU", culture: "آمریکای لاتین و عربی", file: "هنر-دختر-معماری01.jpeg", title: "انعطافِ اینتر-پرسونال" },
+            // AU - ایران و اسلام
             { id: 13, uni: "AU", culture: "ایران و اسلام", file: "هنر-پسر-نقاشی.jpeg", title: "انعطافِ تقویمیِ لایه‌ای" },
             { id: 14, uni: "AU", culture: "ایران و اسلام", file: "هنر-دختر-مجسمه.jpeg", title: "تجریدِ زمانیِ عرفان" },
             { id: 15, uni: "AU", culture: "ایران و اسلام", file: "هنر-دختر-نقاشی.jpeg", title: "همزمانیِ عرفانی" },
+            // AU - بومیان استرالیا
             { id: 16, uni: "AU", culture: "بومیان استرالیا", file: "هنر-پسر-معماری.jpeg", title: "اکولوژیِ زمانیِ زمین" },
             { id: 17, uni: "AU", culture: "بومیان استرالیا", file: "هنر-دختر-مجسمه سازی.jpeg", title: "هوشمندیِ ریشه‌ایِ خاک" },
             { id: 18, uni: "AU", culture: "بومیان استرالیا", file: "هنر-دختر-معماری.jpeg", title: "اتصالِ تلموریک" },
+            // AU - غرب مدرن
             { id: 19, uni: "AU", culture: "غرب مدرن", file: "هنر-پسر-مجسمه.jpeg", title: "دقتِ برده‌وارِ ماشین" },
             { id: 20, uni: "AU", culture: "غرب مدرن", file: "هنر-پسر-معماری.jpeg", title: "تنشِ ثانیه‌وارِ مدرنیته" },
             { id: 21, uni: "AU", culture: "غرب مدرن", file: "هنر-دختر-مجسمه.jpeg", title: "اضطرابِ کرونولوژیک" },
+            // AU - هندوستان
             { id: 22, uni: "AU", culture: "هندوستان", file: "هنر-پسر-طراحی صنعتی.jpg", title: "چرخه‌یِ دوارِ رهایی" },
             { id: 23, uni: "AU", culture: "هندوستان", file: "هنر-دختر-طراحی صنعتی.jpg", title: "واگراییِ سامساریک" },
             { id: 24, uni: "AU", culture: "هندوستان", file: "هنر-دختر-طراحی صنعتی-1.jpg", title: "چرخه‌یِ بازگشتِ ابدی" },
             
-            // UT
+            // UT - اروپای شمالی
             { id: 25, uni: "UT", culture: "اروپای شمالی", file: "پسر-طراحی صنعتی-تهران 05.jpg", title: "تقطیعِ بصریِ انضباط" },
             { id: 26, uni: "UT", culture: "اروپای شمالی", file: "دختر-طراحی صنعتی-تهران01.jpeg", title: "تقطیعِ انضباطی" },
             { id: 27, uni: "UT", culture: "اروپای شمالی", file: "دختر-طراحی صنعتی-تهران07.jpeg", title: "معماریِ انقیاد" },
             { id: 28, uni: "UT", culture: "اروپای شمالی", file: "دختر-نقاشی-تهران01.jpeg", title: "جامه‌یِ خاکستریِ دقت" },
+            // UT - آسیای شرقی
             { id: 29, uni: "UT", culture: "آسیای شرقی", file: "پسر-مجسمه-تهران01.jpeg", title: "گذرِ استعلاییِ بهار" },
             { id: 30, uni: "UT", culture: "آسیای شرقی", file: "پسر-موسیقی-تهران01.jpeg", title: "گذرِ اپفانی" },
             { id: 31, uni: "UT", culture: "آسیای شرقی", file: "دختر-طراحی صحنه-تهران01.jpeg", title: "نوشوندگیِ کیهانی" },
             { id: 32, uni: "UT", culture: "آسیای شرقی", file: "دختر-طراحی صنعتی-تهران08.jpeg", title: "اندوهِ مونو نو آواره" },
             { id: 33, uni: "UT", culture: "آسیای شرقی", file: "دختر-نقاشی-تهران02.JPG", title: "اندوهِ عمیقِ مونو" },
+            // UT - آفریقا
             { id: 34, uni: "UT", culture: "آفریقا", file: "پسر-طراحی صنعتی-تهران01.jpeg", title: "حضورِ ترانسندنتالِ اسلاف" },
             { id: 35, uni: "UT", culture: "آفریقا", file: "پسر-طراحی صنعتی-تهران02.jpeg", title: "حضورِ ترانسندنتال" },
             { id: 36, uni: "UT", culture: "آفریقا", file: "پسر-نقاشی-تهران01-1.jpg", title: "اتصالِ بیولوژیک با نور" },
@@ -84,26 +92,32 @@
             { id: 38, uni: "UT", culture: "آفریقا", file: "دختر-طراحی صنعتی-تهران-04.jpg", title: "وراثتِ اتمسفریک" },
             { id: 39, uni: "UT", culture: "آفریقا", file: "دختر-گرافیک-تهران01.jpg", title: "وراثتِ فیزیکیِ زمان" },
             { id: 40, uni: "UT", culture: "آفریقا", file: "دختر-مجسمه-تهران03.jpeg", title: "نغمه‌یِ بومیِ بقا" },
+            // UT - آمریکای لاتین و عربی
             { id: 41, uni: "UT", culture: "آمریکای لاتین و عربی", file: "پسر-کارگردانی-تهران01.jpeg", title: "درنگِ کیفیِ گفتگو" },
             { id: 42, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-طراحی صنعتی-تهران06.PNG", title: "ارزشِ کیفیِ درنگ" },
             { id: 43, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-مجسمه-تهران01.jpeg", title: "تقدمِ پیوند بر تقویم" },
             { id: 44, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-نقاشی-تهران03.jpeg", title: "گرما-محوریِ تعامل" },
+            // UT - ایران و اسلام
             { id: 45, uni: "UT", culture: "ایران و اسلام", file: "دختر-نقاشی-تهران03.jpeg", title: "ابدیتِ محصور در لحظه" },
             { id: 46, uni: "UT", culture: "ایران و اسلام", file: "پسر-معماری-تهران01.jpeg", title: "شهودِ زمانیِ ایرانی" },
             { id: 47, uni: "UT", culture: "ایران و اسلام", file: "دختر-طراحی صنعتی-تهران 05.jpg", title: "تقدسِ زمانیِ سرمد" },
+            // UT - بومیان استرالیا
             { id: 48, uni: "UT", culture: "بومیان استرالیا", file: "پسر-طراحی صنعتی-تهران03.jpeg", title: "حافظه‌یِ زمین‌شناختی" },
             { id: 49, uni: "UT", culture: "بومیان استرالیا", file: "پسر-گرافیک-تهران01.jpeg", title: "زمان‌مندیِ اسطوره‌محور" },
             { id: 50, uni: "UT", culture: "بومیان استرالیا", file: "پسر-نمایش-تهران01.jpeg", title: "نقشه‌یِ جغرافیاییِ رویا" },
             { id: 51, uni: "UT", culture: "بومیان استرالیا", file: "دختر-طراحی صحنه-تهران02.jpeg", title: "ریشه‌زایی در بیکران" },
             { id: 52, uni: "UT", culture: "بومیان استرالیا", file: "دختر-مجسمه-تهران02.jpeg", title: "مدیتیشنِ پانتئیستیک" },
+            // UT - غرب مدرن
             { id: 53, uni: "UT", culture: "غرب مدرن", file: "پسر-ادبیات نمایشی-تهران02.jpeg", title: "اقتدارِ ناقوسِ فلزی" },
             { id: 54, uni: "UT", culture: "غرب مدرن", file: "پسر-طراحی صنعتی-تهران 04.jpeg", title: "سلطه‌ی ناقوسِ صنعتی" },
             { id: 55, uni: "UT", culture: "غرب مدرن", file: "پسر-نمایش-تهران02.jpeg", title: "بهره‌وریِ فرسایشی" },
             { id: 56, uni: "UT", culture: "غرب مدرن", file: "دختر طراحی صنعتی-تهران03.jpg", title: "زمان‌بندیِ کلینیکال" },
             { id: 57, uni: "UT", culture: "غرب مدرن", file: "دختر-طراحی صنعتی-تهران02.jpeg", title: "تنشِ اپیزودیکِ شهر" },
+            // UT - هندوستان
             { id: 58, uni: "UT", culture: "هندوستان", file: "پسر-طراحی صنعتی-تهران - 1.jpg", title: "تکرارِ دوارِ هستی" },
             { id: 59, uni: "UT", culture: "هندوستان", file: "پسر-طراحی صنعتی-تهران.jpg", title: "صبرِ سابجکتیوِ شرق" },
             { id: 60, uni: "UT", culture: "هندوستان", file: "دختر-طراحی صنعتی-تهران.jpg", title: "مارپیچِ کیهانی" },
+            // نهایی
             { id: 61, uni: "UT", culture: "ایران و اسلام", file: "پسر-معماری-تهران01.jpeg", title: "اشراقِ نهاییِ زمان" }
         ];
 
@@ -229,7 +243,7 @@
                                             />
                                             <div className="hidden absolute inset-0 items-center justify-center text-[#283618]/30 flex-col p-4 text-center">
                                                 <i data-lucide="image-off" size={24} className="mb-2"></i>
-                                                <span className="text-[8px] leading-tight font-bold">یافت نشد<br/>({s.file})</span>
+                                                <span className="text-[8px] leading-tight font-bold">فایل یافت نشد<br/>({s.file})</span>
                                             </div>
                                             <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-[9px] font-bold shadow-sm">
                                                 #{s.id}
