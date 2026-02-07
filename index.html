@@ -85,11 +85,11 @@
             { id: 39, uni: "UT", culture: "آفریقا", file: "دختر-گرافیک-تهران01.jpg", title: "وراثتِ فیزیکیِ زمان" },
             { id: 40, uni: "UT", culture: "آفریقا", file: "دختر-مجسمه-تهران03.jpeg", title: "نغمه‌یِ بومیِ بقا" },
             { id: 41, uni: "UT", culture: "آمریکای لاتین و عربی", file: "پسر-کارگردانی-تهران01.jpeg", title: "درنگِ کیفیِ گفتگو" },
-            // اصلاح تصویر ۴۲ بر اساس گیت‌هاب و تغییر پوشه‌ی "ایران و اسلام" برای لود شدن تصاویر ۴۵ تا ۴۷ و ۶۱
             { id: 42, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-طراحی صنعتی-تهران06.jpg", title: "ارزشِ کیفیِ درنگ" },
             { id: 43, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-مجسمه-تهران01.jpeg", title: "تقدمِ پیوند بر تقویم" },
             { id: 44, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-نقاشی-تهران03.jpeg", title: "گرما-محوریِ تعامل" },
-            { id: 45, uni: "UT", culture: "ایران و اسلام", file: "پسر-طراحی صحنه-تهران01.jpeg", title: "ابدیتِ محصور در لحظه" },
+            // اصلاح خط ۴۵: استفاده از نام دقیق فایل از اسکرین‌شات گیت‌هاب (با یک فاصله قبل از 01)
+            { id: 45, uni: "UT", culture: "ایران و اسلام", file: "پسر-طراحی صحنه-تهران 01.jpeg", title: "ابدیتِ محصور در لحظه" },
             { id: 46, uni: "UT", culture: "ایران و اسلام", file: "پسر-معماری-تهران01.jpeg", title: "شهودِ زمانیِ ایرانی" },
             { id: 47, uni: "UT", culture: "ایران و اسلام", file: "دختر-طراحی صنعتی-تهران 05.jpg", title: "تقدسِ زمانیِ سرمد" },
             { id: 48, uni: "UT", culture: "بومیان استرالیا", file: "پسر-طراحی صنعتی-تهران03.jpeg", title: "حافظه‌یِ زمین‌شناختی" },
@@ -159,7 +159,7 @@
                     </header>
 
                     <div className="space-y-40">
-                        {/* Section 1: 10 Scientific Charts */}
+                        {/* Section 1: Charts */}
                         <section>
                             <h2 className="text-3xl font-bold text-[#283618] section-title flex items-center">
                                 <i data-lucide="bar-chart-3" className="ml-3 text-[#bc6c25]"></i> لایه اول: کالبدشکافیِ آماری (۱۰ پارامتر علمی)
@@ -200,33 +200,30 @@
                             </div>
                         </section>
 
-                        {/* Section 3: Professional Protocol (2 Pages Logic) */}
+                        {/* Section 3: Professional Protocol */}
                         <section id="roadmap" className="space-y-32">
                             <h2 className="text-3xl font-bold text-[#283618] section-title flex items-center">
                                 <i data-lucide="shield-check" className="ml-3 text-[#bc6c25]"></i> لایه دوم: منشور مهندسی و طراحیِ ساعتِ ضدِ-اضطراب
                             </h2>
-                            
                             <div className="grid grid-cols-1 gap-16">
                                 <div className="protocol-card shadow-lg">
                                     <div className="flex flex-col md:flex-row gap-12">
                                         <div className="md:w-1/3 text-[#bc6c25] font-bold text-3xl">فاز اول: انهدامِ استبدادِ کرونومتریک</div>
                                         <div className="md:w-2/3 text-lg leading-9 text-slate-600 text-justify">
-                                            طراحی باید بر پایه تئوری «زمانِ مه‌آلود» (Vague Time) بنا شود. حذف واحدِ «ثانیه» یک انتخاب فرمی نیست، بلکه یک الزامِ بیولوژیک برای بقای روان است. نمایش ثانیه در ۸۲٪ کاربران، باعث تحریک سیستم لیمبیک و القای حس «شمارش معکوس» می‌شود. راهکار نهایی، استفاده از **Subtractive UI** است؛ حذف هر المانی که ذهن را به سمت شمارش می‌برد. متریال‌های «هوشمندِ تغییر رنگ‌دهنده» باید جایگزین کنتراست‌های شدید دیجیتال شوند تا زمان را به مثابه یک «اتمسفر» (مانند غروب خورشید) نمایش دهند.
+                                            طراحی باید بر پایه تئوری «زمانِ مه‌آلود» (Vague Time) بنا شود. حذف واحدِ «ثانیه» یک انتخاب فرمی نیست، بلکه یک الزامِ بیولوژیک برای بقای روان است. نمایش ثانیه در ۸۲٪ کاربران، باعث تحریک سیستم لیمبیک و القای حس «شمارش معکوس» می‌شود. راهکار نهایی، استفاده از Subtractive UI است؛ حذف هر المانی که ذهن را به سمت شمارش می‌برد. متریال‌های «هوشمندِ تغییر رنگ‌دهنده» باید جایگزین کنتراست‌های شدید دیجیتال شوند تا زمان را به مثابه یک «اتمسفر» نمایش دهند.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="protocol-card shadow-lg">
                                     <div className="flex flex-col md:flex-row gap-12">
                                         <div className="md:w-1/3 text-[#606c38] font-bold text-3xl">فاز دوم: مهندسیِ لمسی (Haptic Bio-Sync)</div>
                                         <div className="md:w-2/3 text-lg leading-9 text-slate-600 text-justify">
-                                            ساعت نهایی باید بخشی از «کالبدِ فیزیکیِ» کاربر به نظر برسد. استفاده از بیوپلیمرهای متخلخل یا سرامیک‌هایی با ضریب انتقال حرارت مشابه پوست انسان ضروری است. فیدبکِ لرزشی دستگاه نباید پالس‌های منقطع دیجیتال باشد؛ بلکه باید با ریتمِ «تپشِ قلب» نوسان کند تا همگام‌سازی (Entrainment) با سیستمِ عصبیِ پاراسمپاتیک برقرار شود. این هم‌دمایی و هم‌ضربانی، اضطراب را در سطحِ عصبی سرکوب کرده و احساس تعلق به زمین را در کاربر بازتولید می‌کند.
+                                            ساعت نهایی باید بخشی از «کالبدِ فیزیکیِ» کاربر به نظر برسد. استفاده از بیوپلیمرهای متخلخل یا سرامیک‌هایی با ضریب انتقال حرارت مشابه پوست انسان ضروری است. فیدبکِ لرزشی دستگاه نباید پالس‌های منقطع دیجیتال باشد؛ بلکه باید با ریتمِ «تپشِ قلب» نوسان کند تا همگام‌سازی (Entrainment) با سیستمِ عصبیِ پاراسمپاتیک برقرار شود. این هم‌دمایی و هم‌ضربانی، اضطراب را در سطحِ عصبی سرکوب می‌کند.
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            {/* visual Dos & Don'ts */}
+                            {/* Dos & Don'ts */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-20">
                                 <div className="bg-emerald-50/50 p-12 rounded-[4rem] border border-emerald-100 relative shadow-sm">
                                     <div className="absolute -top-7 right-12 bg-emerald-600 text-white px-10 py-4 rounded-full font-bold shadow-2xl flex items-center tracking-tighter"><i data-lucide="check-circle" className="ml-2"></i> بایدها (Mandatory Protocol)</div>
