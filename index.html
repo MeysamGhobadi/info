@@ -41,7 +41,7 @@
         const GITHUB_BASE = "https://raw.githubusercontent.com/MeysamGhobadi/info/main";
 
         const SKETCH_DATA = [
-            // AU - بر اساس ساختار واقعی گیت‌هاب
+            // AU
             { id: 1, uni: "AU", culture: "اروپای شمالی", file: "هنر-پسر-مجسمه.jpeg", title: "سکونِ انجمادیِ سیستم" },
             { id: 2, uni: "AU", culture: "اروپای شمالی", file: "هنر-دختر-معماری.jpeg", title: "انجمادِ کرونومتریک" },
             { id: 3, uni: "AU", culture: "اروپای شمالی", file: "هنر-دختر-نقاشی.jpeg", title: "نظمِ بلورینِ سرد" },
@@ -85,11 +85,11 @@
             { id: 39, uni: "UT", culture: "آفریقا", file: "دختر-گرافیک-تهران01.jpg", title: "وراثتِ فیزیکیِ زمان" },
             { id: 40, uni: "UT", culture: "آفریقا", file: "دختر-مجسمه-تهران03.jpeg", title: "نغمه‌یِ بومیِ بقا" },
             { id: 41, uni: "UT", culture: "آمریکای لاتین و عربی", file: "پسر-کارگردانی-تهران01.jpeg", title: "درنگِ کیفیِ گفتگو" },
-            // اصلاح تصویر ۴۵ بر اساس درخواست و تغییر تصویر ۴۲ برای لود شدن
+            // اصلاح تصویر ۴۲ بر اساس گیت‌هاب و تغییر پوشه‌ی "ایران و اسلام" برای لود شدن تصاویر ۴۵ تا ۴۷ و ۶۱
             { id: 42, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-طراحی صنعتی-تهران06.jpg", title: "ارزشِ کیفیِ درنگ" },
             { id: 43, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-مجسمه-تهران01.jpeg", title: "تقدمِ پیوند بر تقویم" },
             { id: 44, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-نقاشی-تهران03.jpeg", title: "گرما-محوریِ تعامل" },
-            { id: 45, uni: "UT", culture: "ایران و اسلام", file: "پسر-طراحی صحنه-تهران 01.jpeg", title: "ابدیتِ محصور در لحظه" },
+            { id: 45, uni: "UT", culture: "ایران و اسلام", file: "پسر-طراحی صحنه-تهران01.jpeg", title: "ابدیتِ محصور در لحظه" },
             { id: 46, uni: "UT", culture: "ایران و اسلام", file: "پسر-معماری-تهران01.jpeg", title: "شهودِ زمانیِ ایرانی" },
             { id: 47, uni: "UT", culture: "ایران و اسلام", file: "دختر-طراحی صنعتی-تهران 05.jpg", title: "تقدسِ زمانیِ سرمد" },
             { id: 48, uni: "UT", culture: "بومیان استرالیا", file: "پسر-طراحی صنعتی-تهران03.jpeg", title: "حافظه‌یِ زمین‌شناختی" },
@@ -111,7 +111,6 @@
         const App = () => {
             useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, []);
 
-            // 10 Scientific Datasets
             const pieData = [
                 { name: 'دایره و مارپیچ (ارگانیک)', value: 45, color: '#606c38' },
                 { name: 'خطوط شکسته (ماشینی)', value: 30, color: '#bc6c25' },
