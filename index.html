@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>واکاوی فنومنولوژیک زمان - نسخه نهایی تحلیل متمرکز</title>
+    <title>واکاوی فنومنولوژیک زمان - دایره‌المعارف تحلیلی</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
@@ -15,16 +15,16 @@
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap');
         :root { --primary: #1a1a1a; --accent: #bc6c25; --secondary: #606c38; --bg: #fefae0; --text-main: #283618; }
         body { font-family: 'Vazirmatn', sans-serif; background-color: var(--bg); color: var(--text-main); line-height: 1.8; scroll-behavior: smooth; }
-        .chart-container { background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(40, 54, 24, 0.1); border-radius: 2.5rem; box-shadow: 0 10px 40px -15px rgba(0,0,0,0.1); margin-bottom: 2rem; padding: 2.5rem; }
+        .chart-container { background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(40, 54, 24, 0.1); border-radius: 2rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); margin-bottom: 2rem; padding: 1.5rem; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
         .section-title { position: relative; display: inline-block; margin-bottom: 3.5rem; }
-        .section-title::after { content: ''; position: absolute; bottom: -12px; right: 0; width: 140px; height: 6px; background-color: var(--accent); border-radius: 3px; }
+        .section-title::after { content: ''; position: absolute; bottom: -12px; right: 0; width: 120px; height: 6px; background-color: var(--accent); border-radius: 3px; }
         .sketch-card { background: white; padding: 0.8rem; border-radius: 1.5rem; border: 1px solid rgba(40, 54, 24, 0.05); transition: all 0.3s ease; }
         .sketch-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1); }
         .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
-        .protocol-card { border-right: 6px solid var(--accent); background: white; padding: 2.5rem; border-radius: 2.5rem; }
+        .protocol-card { border-right: 5px solid var(--accent); background: white; padding: 2rem; border-radius: 2rem; }
     </style>
 </head>
 <body>
@@ -45,24 +45,31 @@
             { id: 1, uni: "AU", culture: "اروپای شمالی", file: "هنر-پسر-مجسمه.jpeg", title: "سکونِ انجمادیِ سیستم" },
             { id: 2, uni: "AU", culture: "اروپای شمالی", file: "هنر-دختر-معماری.jpeg", title: "انجمادِ کرونومتریک" },
             { id: 3, uni: "AU", culture: "اروپای شمالی", file: "هنر-دختر-نقاشی.jpeg", title: "نظمِ بلورینِ سرد" },
+            // AU - آسیای شرقی
             { id: 4, uni: "AU", culture: "آسیای شرقی", file: "هنر-پسر-معماری داخلی.jpeg", title: "توالیِ ارگانیکِ شکوفایی" },
             { id: 5, uni: "AU", culture: "آسیای شرقی", file: "هنر-پسر-نقاشی.jpeg", title: "دگردیسیِ فنولوژیک" },
             { id: 6, uni: "AU", culture: "آسیای شرقی", file: "هنر-دختر-معماری.jpeg", title: "میراییِ زیباشناختی" },
+            // AU - آفریقا
             { id: 7, uni: "AU", culture: "آفریقا", file: "هنر-پسر-مجسمه.jpeg", title: "پیوستارِ غیرخطیِ اجدادی" },
             { id: 8, uni: "AU", culture: "آفریقا", file: "هنر-پسر-معماری.jpeg", title: "طنینِ معنویِ طبل" },
             { id: 9, uni: "AU", culture: "آفریقا", file: "هنر-پسر-معماری01.jpeg", title: "ریتمِ طنینِ آیینی" },
+            // AU - آمریکای لاتین و عربی
             { id: 10, uni: "AU", culture: "آمریکای لاتین و عربی", file: "هنر-پسر-مجسمه.jpeg", title: "کششِ تعاملیِ سیال" },
             { id: 11, uni: "AU", culture: "آمریکای لاتین و عربی", file: "هنر-دختر-معماری.jpeg", title: "زمانِ گرمِ انسانی" },
             { id: 12, uni: "AU", culture: "آمریکای لاتین و عربی", file: "هنر-دختر-معماری01.jpeg", title: "انعطافِ اینتر-پرسونال" },
+            // AU - ایران و اسلام
             { id: 13, uni: "AU", culture: "ایران و اسلام", file: "هنر-پسر-نقاشی.jpeg", title: "انعطافِ تقویمیِ لایه‌ای" },
             { id: 14, uni: "AU", culture: "ایران و اسلام", file: "هنر-دختر-مجسمه.jpeg", title: "تجریدِ زمانیِ عرفان" },
             { id: 15, uni: "AU", culture: "ایران و اسلام", file: "هنر-دختر-نقاشی.jpeg", title: "همزمانیِ عرفانی" },
+            // AU - بومیان استرالیا
             { id: 16, uni: "AU", culture: "بومیان استرالیا", file: "هنر-پسر-معماری.jpeg", title: "اکولوژیِ زمانیِ زمین" },
             { id: 17, uni: "AU", culture: "بومیان استرالیا", file: "هنر-دختر-مجسمه سازی.jpeg", title: "هوشمندیِ ریشه‌ایِ خاک" },
             { id: 18, uni: "AU", culture: "بومیان استرالیا", file: "هنر-دختر-معماری.jpeg", title: "اتصالِ تلموریک" },
+            // AU - غرب مدرن
             { id: 19, uni: "AU", culture: "غرب مدرن", file: "هنر-پسر-مجسمه.jpeg", title: "دقتِ برده‌وارِ ماشین" },
             { id: 20, uni: "AU", culture: "غرب مدرن", file: "هنر-پسر-معماری.jpeg", title: "تنشِ ثانیه‌وارِ مدرنیته" },
             { id: 21, uni: "AU", culture: "غرب مدرن", file: "هنر-دختر-مجسمه.jpeg", title: "اضطرابِ کرونولوژیک" },
+            // AU - هندوستان
             { id: 22, uni: "AU", culture: "هندوستان", file: "هنر-پسر-طراحی صنعتی.jpg", title: "چرخه‌یِ دوارِ رهایی" },
             { id: 23, uni: "AU", culture: "هندوستان", file: "هنر-دختر-طراحی صنعتی.jpg", title: "واگراییِ سامساریک" },
             { id: 24, uni: "AU", culture: "هندوستان", file: "هنر-دختر-طراحی صنعتی-1.jpg", title: "چرخه‌یِ بازگشتِ ابدی" },
@@ -72,11 +79,13 @@
             { id: 26, uni: "UT", culture: "اروپای شمالی", file: "دختر-طراحی صنعتی-تهران01.jpeg", title: "تقطیعِ انضباطی" },
             { id: 27, uni: "UT", culture: "اروپای شمالی", file: "دختر-طراحی صنعتی-تهران07.jpeg", title: "معماریِ انقیاد" },
             { id: 28, uni: "UT", culture: "اروپای شمالی", file: "دختر-نقاشی-تهران01.jpeg", title: "جامه‌یِ خاکستریِ دقت" },
+            // UT - آسیای شرقی
             { id: 29, uni: "UT", culture: "آسیای شرقی", file: "پسر-مجسمه-تهران01.jpeg", title: "گذرِ استعلاییِ بهار" },
             { id: 30, uni: "UT", culture: "آسیای شرقی", file: "پسر-موسیقی-تهران01.jpeg", title: "گذرِ اپفانی" },
             { id: 31, uni: "UT", culture: "آسیای شرقی", file: "دختر-طراحی صحنه-تهران01.jpeg", title: "نوشوندگیِ کیهانی" },
             { id: 32, uni: "UT", culture: "آسیای شرقی", file: "دختر-طراحی صنعتی-تهران08.jpeg", title: "اندوهِ مونو نو آواره" },
             { id: 33, uni: "UT", culture: "آسیای شرقی", file: "دختر-نقاشی-تهران02.JPG", title: "اندوهِ عمیقِ مونو" },
+            // UT - آفریقا
             { id: 34, uni: "UT", culture: "آفریقا", file: "پسر-طراحی صنعتی-تهران01.jpeg", title: "حضورِ ترانسندنتالِ اسلاف" },
             { id: 35, uni: "UT", culture: "آفریقا", file: "پسر-طراحی صنعتی-تهران02.jpeg", title: "حضورِ ترانسندنتال" },
             { id: 36, uni: "UT", culture: "آفریقا", file: "پسر-نقاشی-تهران01-1.jpg", title: "اتصالِ بیولوژیک با نور" },
@@ -84,34 +93,38 @@
             { id: 38, uni: "UT", culture: "آفریقا", file: "دختر-طراحی صنعتی-تهران-04.jpg", title: "وراثتِ اتمسفریک" },
             { id: 39, uni: "UT", culture: "آفریقا", file: "دختر-گرافیک-تهران01.jpg", title: "وراثتِ فیزیکیِ زمان" },
             { id: 40, uni: "UT", culture: "آفریقا", file: "دختر-مجسمه-تهران03.jpeg", title: "نغمه‌یِ بومیِ بقا" },
+            // UT - آمریکای لاتین و عربی
             { id: 41, uni: "UT", culture: "آمریکای لاتین و عربی", file: "پسر-کارگردانی-تهران01.jpeg", title: "درنگِ کیفیِ گفتگو" },
             { id: 42, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-طراحی صنعتی-تهران06.jpg", title: "ارزشِ کیفیِ درنگ" },
             { id: 43, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-مجسمه-تهران01.jpeg", title: "تقدمِ پیوند بر تقویم" },
             { id: 44, uni: "UT", culture: "آمریکای لاتین و عربی", file: "دختر-نقاشی-تهران03.jpeg", title: "گرما-محوریِ تعامل" },
-            // اصلاح خط ۴۵: لود مستقیم از روت اصلی گیت‌هاب
+            // UT - ایران و اسلام
             { id: 45, uni: "", culture: "ایران و اسلام", file: "پسر-گرافیک-تهران02.jpeg", title: "ابدیتِ محصور در لحظه" },
             { id: 46, uni: "UT", culture: "ایران و اسلام", file: "پسر-معماری-تهران01.jpeg", title: "شهودِ زمانیِ ایرانی" },
             { id: 47, uni: "UT", culture: "ایران و اسلام", file: "دختر-طراحی صنعتی-تهران 05.jpg", title: "تقدسِ زمانیِ سرمد" },
+            // انتقال تصویر ۶۱ به مکانِ جدید (بین ۴۷ و ۴۸) برای اصلاح دسته‌بندی
+            { id: 61, uni: "UT", culture: "ایران و اسلام", file: "پسر-طراحی صحنه-تهران01.jpeg", title: "اشراقِ نهاییِ زمان" },
+            // UT - بومیان استرالیا
             { id: 48, uni: "UT", culture: "بومیان استرالیا", file: "پسر-طراحی صنعتی-تهران03.jpeg", title: "حافظه‌یِ زمین‌شناختی" },
             { id: 49, uni: "UT", culture: "بومیان استرالیا", file: "پسر-گرافیک-تهران01.jpeg", title: "زمان‌مندیِ اسطوره‌محور" },
             { id: 50, uni: "UT", culture: "بومیان استرالیا", file: "پسر-نمایش-تهران01.jpeg", title: "نقشه‌یِ جغرافیاییِ رویا" },
             { id: 51, uni: "UT", culture: "بومیان استرالیا", file: "دختر-طراحی صحنه-تهران02.jpeg", title: "ریشه‌زایی در بیکران" },
             { id: 52, uni: "UT", culture: "بومیان استرالیا", file: "دختر-مجسمه-تهران02.jpeg", title: "مدیتیشنِ پانتئیستیک" },
+            // UT - غرب مدرن
             { id: 53, uni: "UT", culture: "غرب مدرن", file: "پسر-ادبیات نمایشی-تهران02.jpeg", title: "اقتدارِ ناقوسِ فلزی" },
             { id: 54, uni: "UT", culture: "غرب مدرن", file: "پسر-طراحی صنعتی-تهران 04.jpeg", title: "سلطه‌ی ناقوسِ صنعتی" },
             { id: 55, uni: "UT", culture: "غرب مدرن", file: "پسر-نمایش-تهران02.jpeg", title: "بهره‌وریِ فرسایشی" },
             { id: 56, uni: "UT", culture: "غرب مدرن", file: "دختر طراحی صنعتی-تهران03.jpg", title: "زمان‌بندیِ کلینیکال" },
             { id: 57, uni: "UT", culture: "غرب مدرن", file: "دختر-طراحی صنعتی-تهران02.jpeg", title: "تنشِ اپیزودیکِ شهر" },
+            // UT - هندوستان
             { id: 58, uni: "UT", culture: "هندوستان", file: "پسر-طراحی صنعتی-تهران - 1.jpg", title: "تکرارِ دوارِ هستی" },
             { id: 59, uni: "UT", culture: "هندوستان", file: "پسر-طراحی صنعتی-تهران.jpg", title: "صبرِ سابجکتیوِ شرق" },
-            { id: 60, uni: "UT", culture: "هندوستان", file: "دختر-طراحی صنعتی-تهران.jpg", title: "مارپیچِ کیهانی" },
-            { id: 61, uni: "UT", culture: "ایران و اسلام", file: "پسر-معماری-تهران01.jpeg", title: "اشراقِ نهاییِ زمان" }
+            { id: 60, uni: "UT", culture: "هندوستان", file: "دختر-طراحی صنعتی-تهران.jpg", title: "مارپیچِ کیهانی" }
         ];
 
         const App = () => {
             useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, []);
 
-            // The 4 Core Scientific Datasets
             const pieData = [
                 { name: 'دایره و مارپیچ (ارگانیک)', value: 45, color: '#606c38' },
                 { name: 'خطوط شکسته (ماشینی)', value: 30, color: '#bc6c25' },
@@ -153,158 +166,100 @@
                     </header>
 
                     <div className="space-y-48">
-                        
-                        {/* Section 1: 4 Core Charts (Enlarged) */}
+                        {/* Section 1: Charts */}
                         <section>
                             <h2 className="text-4xl font-bold text-[#283618] section-title flex items-center mb-16">
                                 <i data-lucide="bar-chart-3" className="ml-4 text-[#bc6c25]" size={36}></i> لایه اول: کالبدشکافیِ آماری هسته (Core Metrics)
                             </h2>
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                                
-                                {/* 1. Morphology */}
                                 <div className="chart-container">
-                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۱. توزیع مورفولوژیک (Morphological Distribution)</h3>
+                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۱. توزیع مورفولوژیک</h3>
                                     <div className="h-[450px]">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <PieChart>
                                                 <Pie data={pieData} dataKey="value" innerRadius={80} outerRadius={120} paddingAngle={8} label>
                                                     {pieData.map((e, i) => <Cell key={i} fill={e.color} />)}
                                                 </Pie>
-                                                <Tooltip />
-                                                <Legend />
+                                                <Tooltip /><Legend />
                                             </PieChart>
                                         </ResponsiveContainer>
                                     </div>
-                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8">
-                                        این نمودار غلبه‌ی ۷۸ درصدی فرم‌های «غیرصلب» در اسکچ‌های غیرغربی را نشان می‌دهد. همبستگی معناداری میان «انحنای بصری» و «پذیرش زمانی» وجود دارد؛ جایی که فرم‌های دایره‌ای نماد زمانِ تکرارپذیر و فرم‌های شکسته نمادِ «زمانِ مصرف‌شدنی» هستند.
-                                    </p>
+                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8 font-light">این نمودار غلبه‌ی ۷۸ درصدی فرم‌های «غیرصلب» در اسکچ‌های غیرغربی را نشان می‌دهد. همبستگی معناداری میان «انحنای بصری» و «پذیرش زمانی» وجود دارد؛ جایی که فرم‌های دایره‌ای نماد زمانِ تکرارپذیر هستند.</p>
                                 </div>
-
-                                {/* 2. Gender Radar */}
                                 <div className="chart-container">
-                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۲. واگرایی رویکرد جنسیتی (Gender Perspectives)</h3>
+                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۲. واگرایی رویکرد جنسیتی</h3>
                                     <div className="h-[450px]">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <RadarChart data={genderRadar}>
                                                 <PolarGrid stroke="#e2e8f0" />
                                                 <PolarAngleAxis dataKey="subject" tick={{fontSize: 11, fontWeight: 'bold'}} />
-                                                <Radar name="زن (روایت‌محور)" dataKey="female" stroke="#bc6c25" fill="#bc6c25" fillOpacity={0.4} />
-                                                <Radar name="مرد (تکنیک‌محور)" dataKey="male" stroke="#283618" fill="#283618" fillOpacity={0.2} />
-                                                <Legend />
+                                                <Radar name="زن" dataKey="female" stroke="#bc6c25" fill="#bc6c25" fillOpacity={0.4} />
+                                                <Radar name="مرد" dataKey="male" stroke="#283618" fill="#283618" fillOpacity={0.2} /><Legend />
                                             </RadarChart>
                                         </ResponsiveContainer>
                                     </div>
-                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8">
-                                        واکاوی جنسیتی نشان‌دهنده‌ی تفاوت در «گرانولاریتیِ ادراکی» است. در حالی که ۹۰٪ شرکت‌کنندگان مرد زمان را در قالب «ماشین‌آلات» (دقت مکانیکی) می‌بینند، ۸۵٪ زنان آن را به مثابه یک «محیطِ اتمسفریک» (تجرید و روایت) ترسیم کرده‌اند که اضطراب کمتری را القا می‌کند.
-                                    </p>
+                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8 font-light">واکاوی جنسیتی نشان‌دهنده‌ی تفاوت در «گرانولاریتیِ ادراکی» است. در حالی که مردان زمان را در قالب «ماشین‌آلات» می‌بینند، زنان آن را به مثابه یک «محیطِ اتمسفریک» ترسیم کرده‌اند.</p>
                                 </div>
-
-                                {/* 3. Linear vs Cyclic */}
                                 <div className="chart-container lg:col-span-2">
-                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۳. تضاد Chronos در برابر Kairos (فرهنگ‌های خطی vs چرخه‌ای)</h3>
+                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۳. تضاد فرهنگ‌های خطی vs چرخه‌ای</h3>
                                     <div className="h-[450px]">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <BarChart data={crossCulturalData} margin={{bottom: 30}}>
                                                 <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} />
                                                 <XAxis dataKey="name" tick={{fontSize: 12, fontWeight: 'bold'}} />
-                                                <YAxis hide />
-                                                <Tooltip cursor={{fill: 'transparent'}} />
-                                                <Legend />
-                                                <Bar dataKey="linear" name="زمان خطی (اضطراب‌زا)" fill="#bc6c25" stackId="a" radius={[5, 5, 0, 0]} />
-                                                <Bar dataKey="cyclic" name="زمان چرخه‌ای (آرامش‌بخش)" fill="#606c38" stackId="a" radius={[5, 5, 0, 0]} />
+                                                <YAxis hide /><Tooltip cursor={{fill: 'transparent'}} /><Legend />
+                                                <Bar dataKey="linear" name="خطی" fill="#bc6c25" stackId="a" radius={[5, 5, 0, 0]} />
+                                                <Bar dataKey="cyclic" name="چرخه‌ای" fill="#606c38" stackId="a" radius={[5, 5, 0, 0]} />
                                             </BarChart>
                                         </ResponsiveContainer>
                                     </div>
-                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8">
-                                        مقایسه‌ی میان‌فرهنگی اثبات می‌کند که «اضطراب زمانی» یک پدیده‌ی جغرافیایی-فرهنگی است. در فرهنگ‌های غربی (غرب مدرن/شمال اروپا)، زمان به مثابه یک «بردارِ یک‌طرفه» به سمت زوال دیده می‌شود، در حالی که در شرق و آفریقا، زمان یک «حلقه‌ی بازگشت‌پذیر» است که فشارِ روانیِ از دست رفتنِ لحظه را خنثی می‌کند.
-                                    </p>
+                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8 font-light">در فرهنگ‌های غربی، زمان به مثابه یک «بردارِ یک‌طرفه» دیده می‌شود، در حالی که در شرق، زمان یک «حلقه‌ی بازگشت‌پذیر» است که فشارِ روانیِ از دست رفتنِ لحظه را خنثی می‌کند.</p>
                                 </div>
-
-                                {/* 4. Entropy vs Anxiety */}
                                 <div className="chart-container lg:col-span-2">
-                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۴. آنتروپی بصری در برابر شاخص اضطراب (Complexity vs Anxiety Correlation)</h3>
+                                    <h3 className="text-sm font-bold mb-6 border-b pb-3 uppercase tracking-widest text-slate-500">۴. آنتروپی بصری vs شاخص اضطراب</h3>
                                     <div className="h-[450px]">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                                                 <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                                                <XAxis type="number" dataKey="x" name="پیچیدگی بصری" unit="%" label={{ value: 'آنتروپی (پیچیدگی)', position: 'insideBottom', offset: -10 }} />
-                                                <YAxis type="number" dataKey="y" name="اضطراب القا شده" unit="%" label={{ value: 'سطح استرس', angle: -90, position: 'insideLeft' }} />
-                                                <ZAxis type="number" dataKey="z" range={[100, 1000]} />
-                                                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                                                <Scatter name="حوزه‌های فرهنگی" data={complexityAnxiety} fill="#bc6c25">
-                                                    {complexityAnxiety.map((entry, index) => <Cell key={`cell-${index}`} fill={index % 2 === 0 ? '#bc6c25' : '#606c38'} />)}
+                                                <XAxis type="number" dataKey="x" name="Complexity" unit="%" />
+                                                <YAxis type="number" dataKey="y" name="Anxiety" unit="%" />
+                                                <ZAxis type="number" dataKey="z" range={[100, 1000]} /><Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                                                <Scatter name="Cultures" data={complexityAnxiety} fill="#bc6c25">
+                                                    {complexityAnxiety.map((e, i) => <Cell key={i} fill={i % 2 === 0 ? '#bc6c25' : '#606c38'} />)}
                                                 </Scatter>
                                             </ScatterChart>
                                         </ResponsiveContainer>
                                     </div>
-                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8">
-                                        این تحلیلِ نقطه‌ای، رابطه‌ی مستقیمِ میان «نظمِ تحمیلی» و «اضطراب» را آشکار می‌کند. هرچه اسکچ‌ها به سمتِ شبکه‌بندی‌های دقیق و هندسه‌ی صلب (غرب) حرکت کرده‌اند، شاخصِ اضطراب به ۹۵٪ نزدیک شده است. در مقابل، «آنتروپیِ ارگانیک» در بومیان، با وجودِ پیچیدگیِ فرمی، کمترین سطحِ استرس را گزارش می‌کند.
-                                    </p>
+                                    <p className="mt-8 text-sm text-slate-600 text-justify leading-8 font-light">این تحلیلِ نقطه‌ای، رابطه‌ی مستقیمِ میان «نظمِ تحمیلی» و «اضطراب» را آشکار می‌کند. هرچه هندسه صلب‌تر شده، شاخصِ اضطراب به ۹۵٪ نزدیک‌تر شده است.</p>
                                 </div>
-
                             </div>
                         </section>
 
-                        {/* Section 2: Expanded Scientific Summary */}
+                        {/* Section 2: Summary */}
                         <section>
-                            <div className="bg-white p-12 md:p-24 rounded-[5rem] border border-[#283618]/10 shadow-2xl relative overflow-hidden">
+                            <div className="bg-white p-12 md:p-24 rounded-[5rem] border border-[#283618]/10 shadow-2xl relative overflow-hidden text-justify text-xl leading-10 text-[#283618]/90 font-light">
                                 <div className="absolute top-0 left-0 w-4 h-full bg-[#bc6c25]"></div>
                                 <div className="flex items-center mb-16">
                                     <div className="p-6 bg-[#283618] rounded-[2.5rem] text-white ml-8 shadow-2xl flex items-center justify-center"><i data-lucide="microscope" size={48}></i></div>
                                     <h2 className="text-4xl md:text-6xl font-bold text-[#283618]">استنتاجِ فنومنولوژیک و تحلیلِ فراداده</h2>
                                 </div>
-                                <div className="grid grid-cols-1 gap-16 text-justify text-xl leading-10 text-[#283618]/90 font-light">
-                                    <div className="space-y-12">
-                                        <p>
-                                            بر اساس تحلیلِ چندبُعدیِ ۶۱ اسکیس، ما با یک «پارادوکسِ کرونومتریک» مواجه هستیم. **ادوارد هال (1959)** در نظریه «فرهنگ‌های تک‌زمانی و چندزمانی» اشاره می‌کند که ادراکِ زمان تابعی از ساختارِ اجتماعی است. داده‌های ما نشان می‌دهد که در خوشه‌ی غرب و اروپای شمالی، این ساختار به «زمانِ کوانتومی» یا قطعه‌قطعه‌شده تبدیل شده است. ۸۷٪ اسکچ‌های این حوزه دارای «آنتروپیِ خطی» بالایی هستند که مستقیماً با افزایشِ کورتیزول (هورمون استرس) در مواجهه با دیوایس‌های دیجیتال همبستگی دارد. این کاربران، زمان را نه به عنوان یک بسترِ زیستی، بلکه به عنوان یک «ماشینِ سرکوبگر» (Machine-Cyborg Archetype) ترسیم کرده‌اند.
-                                        </p>
-                                        <p>
-                                            در مقابل، رویکردِ «زمانیِ شرقی و بومی» بازتابی از مفاهیم «داهر» و «سرمد» در فلسفه‌ی اسلامی-ایرانی و «سامسارا» در متونِ وِدا است. از منظرِ **هایدگر** در «هستی و زمان»، این رویکرد به معنای «حضور در جهان» (Dasein) به جای «سلطه بر جهان» است. تحلیلِ آماری ما اثبات کرد که فرم‌های مارپیچ و دایره‌ای (در ۷۸٪ اسکچ‌های آفریقا و هند)، بارِ شناختی (Cognitive Load) را تا ۶۴٪ نسبت به فرم‌های شبکه‌ای کاهش می‌دهند. این به معنای آن است که ذهنِ انسان در مواجهه با «زمانِ سیال»، کمتر دچار «ترومایِ ثانیه» می‌شود. **مرلو-پونتی** در «فنومولوژیِ ادراک» بیان می‌کند که زمان توسط کالبدِ ما تجربه می‌شود؛ لذا وقتی اسکچ‌ها به سمت بافت‌های خاکی و طبیعی (Haptic Texture) میل می‌کنند، در واقع در حالِ فرار از «زمانِ یخیِ» (Frozen Time) سیستم‌های صنعتی هستند.
-                                        </p>
-                                        <p>
-                                            واکاویِ نهایی نشان می‌دهد که اضطرابِ زمانی محصولِ یک «توهمِ دقت» است. در اسکچ‌های دانشگاه تهران (UT)، علی‌رغم رویکردِ تکنیکی‌تر، باز هم المان‌های بصریِ «گریز از ثانیه» به چشم می‌خورد. این یعنی حتی در تربیتِ صنعتی، کالبدِ انسان در برابرِ تکه‌تکه شدنِ عمر مقاومت می‌کند. استراتژی «محو کردنِ مرزهای لحظه»، با الهام از «دریم‌تایم» بومیان، به کاربر اجازه می‌دهد تا به جای تماشایِ پایان یافتنِ دقایق، در جریانِ «شدن» (Becoming) غوطه‌ور شود. نتایجِ قطعیِ این دیتا آنالیز نشان می‌دهد که محصولِ نهایی باید از «نمایشگرهای صلبِ عددی» به سمت «رابط‌کاربری‌های اتمسفریک» (Ambient Intelligence) مهاجرت کند؛ جایی که زمان نه با اعداد، بلکه با «کیفیتِ حضور» سنجیده می‌شود.
-                                        </p>
-                                    </div>
-                                </div>
+                                <p>بر اساس تحلیلِ چندبُعدیِ ۶۱ اسکیس، ما با یک «پارادوکسِ کرونومتریک» مواجه هستیم. داده‌ها نشان می‌دهد که در غرب، زمان به یک «ماشینِ سرکوبگر» تبدیل شده است. استراتژی «محو کردنِ مرزهای لحظه»، با الهام از «دریم‌تایم» بومیان، به کاربر اجازه می‌دهد تا به جای تماشایِ پایان یافتنِ دقایق، در جریانِ «شدن» غوطه‌ور شود.</p>
                             </div>
                         </section>
 
-                        {/* Section 3: Professional Protocol (Guidelines) */}
+                        {/* Section 3: Protocol */}
                         <section id="roadmap" className="space-y-32">
                             <h2 className="text-4xl font-bold text-[#283618] section-title flex items-center">
                                 <i data-lucide="shield-check" className="ml-4 text-[#bc6c25]" size={40}></i> لایه دوم: منشور طراحیِ ساعتِ ضدِ-اضطراب (Design Protocol)
                             </h2>
-                            
-                            <div className="grid grid-cols-1 gap-12">
-                                <div className="protocol-card shadow-xl">
-                                    <div className="flex flex-col md:flex-row gap-16">
-                                        <div className="md:w-1/3 text-[#bc6c25] font-bold text-4xl border-l-8 border-[#bc6c25] pr-8 flex items-center">فاز اول: انهدامِ استبدادِ کرونومتریک</div>
-                                        <div className="md:w-2/3 text-lg leading-10 text-slate-600 text-justify font-light">
-                                            طراحی باید بر پایه تئوری «زمانِ مه‌آلود» (Vague Time) بنا شود. حذف واحدِ «ثانیه» یک انتخاب فرمی نیست، بلکه یک الزامِ بیولوژیک برای بقای روان است. نمایش ثانیه در ۸۲٪ کاربران، باعث تحریک سیستم لیمبیک و القای حس «شکار شدن» می‌شود. راهکار نهایی، استفاده از **Subtractive UI** است؛ یعنی حذفِ هر المانی که ذهن را به سمتِ شمارش و محاسبه می‌برد. متریال‌های «هوشمندِ تغییر رنگ‌دهنده» (Photochromic) باید جایگزین LCDهای با کنتراست بالا شوند تا زمان را به مثابه یک «اتمسفر» (مشابه آسمانِ در حالِ تغییر) نمایش دهند.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="protocol-card shadow-xl">
-                                    <div className="flex flex-col md:flex-row gap-16">
-                                        <div className="md:w-1/3 text-[#606c38] font-bold text-4xl border-l-8 border-[#606c38] pr-8 flex items-center">فاز دوم: مهندسیِ لمسی (Haptic Bio-Sync)</div>
-                                        <div className="md:w-2/3 text-lg leading-10 text-slate-600 text-justify font-light">
-                                            ساعت نهایی باید بخشی از «کالبدِ فیزیکیِ» کاربر به نظر برسد. استفاده از بیوپلیمرهای متخلخل یا سرامیک‌هایی با ضریب انتقال حرارت مشابه پوست انسان ضروری است. فیدبکِ لرزشی دستگاه نباید پالس‌های منقطع دیجیتال باشد؛ بلکه باید با ریتمِ «تپشِ قلب» نوسان کند تا همگام‌سازی (Entrainment) با سیستمِ عصبیِ پاراسمپاتیک برقرار شود. این هم‌دمایی و هم‌ضربانی، اضطراب را در سطحِ عصبی سرکوب کرده و احساسِ «زمانِ زمین» را در کاربر بازتولید می‌کند تا از انزوا در برابر ثانیه‌ها رها شود.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Infographic List of Dos & Don'ts */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-24">
                                 <div className="bg-emerald-50/50 p-16 rounded-[5rem] border border-emerald-100 relative shadow-inner">
                                     <div className="absolute -top-8 right-16 bg-emerald-600 text-white px-12 py-5 rounded-full font-bold shadow-2xl flex items-center text-xl"><i data-lucide="check-circle" className="ml-3"></i> بایدها (Mandatory Protocol)</div>
                                     <div className="grid grid-cols-1 gap-12 mt-12">
                                         {[
-                                            { t: "نمایشگرِ طیفی (Gradient):", d: "نمایش زمان از طریق تغییر رنگِ صفحه برای حذفِ مرزهای صلبِ ثانیه و دقیقه." },
-                                            { t: "حرکتِ پیوسته (Sweep Flow):", d: "استفاده از موتورهای بدونِ پله (Stepless) برای القایِ حسِ جریانِ بی‌پایانِ رودخانه." },
-                                            { t: "بافتِ آنتروپومورفیک:", d: "به کارگیریِ موادی مثل چوب یا سرامیکِ مات برای بازسازیِ حسِ لمسیِ طبیعت." },
-                                            { t: "رابطِ کاربریِ تنفسی (Breath UI):", d: "نورپردازیِ ملایم که با ریتمِ تنفسِ نرمالِ انسان (۶ بار در دقیقه) ضربان دارد." }
+                                            { t: "نمایشگرِ طیفی (Gradient):", d: "نمایش زمان از طریق تغییر رنگِ صفحه برای حذفِ مرزهای صلبِ ثانیه." },
+                                            { t: "حرکتِ پیوسته (Sweep Flow):", d: "استفاده از موتورهای بدونِ پله برای القایِ حسِ جریانِ ابدی." },
+                                            { t: "بافتِ آنتروپومورفیک:", d: "به کارگیریِ موادی مثل چوب یا سرامیکِ مات برای بازسازیِ حسِ لمسیِ زمین." }
                                         ].map((item, i) => (
                                             <div key={i} className="flex gap-8"><div className="w-12 h-12 bg-emerald-100 rounded-3xl flex items-center justify-center text-emerald-600 font-bold text-2xl shrink-0 shadow-sm">{i+1}</div><div><h4 className="font-bold text-emerald-900 text-2xl">{item.t}</h4><p className="text-sm text-emerald-800/80 mt-2 leading-7">{item.d}</p></div></div>
                                         ))}
@@ -314,10 +269,9 @@
                                     <div className="absolute -top-8 right-16 bg-rose-600 text-white px-12 py-5 rounded-full font-bold shadow-2xl flex items-center text-xl"><i data-lucide="x-circle" className="ml-3"></i> نبایدها (System Inhibitions)</div>
                                     <div className="grid grid-cols-1 gap-12 mt-12">
                                         {[
-                                            { t: "اعدادِ صلبِ دیجیتال:", d: "هرگونه نشانه‌ی ریاضیاتی که ذهن را به سمتِ وسواسِ بهره‌وری و استهلاکِ عمر می‌برد." },
+                                            { t: "اعدادِ صلبِ دیجیتال:", d: "هرگونه نشانه‌ی ریاضیاتی که ذهن را به سمتِ وسواسِ بهره‌وری می‌برد." },
                                             { t: "ثانیه‌شمارِ تیز:", d: "عقربه‌های نوک‌تیز که نمادِ «بریدنِ» بی‌رحمانه‌یِ لحظات و ایجادِ تروما هستند." },
-                                            { t: "لرزش‌هایِ هشداردهنده:", d: "نوتیفیکیشن‌های تهاجمی که تمرکز بر «حضور» را به نفعِ «واکنشِ اضطراری» مختل می‌کنند." },
-                                            { t: "کنتراستِ سیاه و سفید:", d: "تضادِ شدید نوری که باعثِ تمرکزِ افراطی بر جداسازیِ صلبِ بازه‌های زمانی می‌شود." }
+                                            { t: "لرزش‌هایِ هشداردهنده:", d: "نوتیفیکیشن‌های تهاجمی که تمرکز بر «حضور» را مختل می‌کنند." }
                                         ].map((item, i) => (
                                             <div key={i} className="flex gap-8"><div className="w-12 h-12 bg-rose-100 rounded-3xl flex items-center justify-center text-rose-600 font-bold text-2xl shrink-0 shadow-sm">{i+1}</div><div><h4 className="font-bold text-rose-900 text-2xl">{item.t}</h4><p className="text-sm text-rose-800/80 mt-2 leading-7">{item.d}</p></div></div>
                                         ))}
@@ -326,17 +280,17 @@
                             </div>
                         </section>
 
-                        {/* Section 4: Full Gallery Ref (GitHub Live) */}
+                        {/* Section 4: Full Gallery Ref */}
                         <section id="gallery">
                             <h2 className="text-4xl font-bold text-[#283618] section-title flex items-center mb-20">
-                                <i data-lucide="layout-grid" className="ml-4 text-[#bc6c25]" size={36}></i> مرجع بصری: ۶۱ داده‌یِ خام (GitHub Dataset)
+                                <i data-lucide="layout-grid" className="ml-4 text-[#bc6c25]" size={36}></i> مرجع بصری: ۶۱ داده‌یِ خام (GitHub Live)
                             </h2>
                             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                                 {SKETCH_DATA.map((s) => (
                                     <div key={s.id} className="sketch-card group cursor-help shadow-sm">
                                         <div className="aspect-square rounded-[1.8rem] mb-4 overflow-hidden bg-slate-100 relative shadow-inner border border-slate-50">
                                             <img 
-                                                src={s.id === 45 ? `${GITHUB_BASE}/${encodeURIComponent(s.file)}` : `${GITHUB_BASE}/${s.uni}/${encodeURIComponent(s.culture)}/${encodeURIComponent(s.file)}`} 
+                                                src={(s.id === 45 || s.id === 61) ? `${GITHUB_BASE}/${encodeURIComponent(s.file)}` : `${GITHUB_BASE}/${s.uni}/${encodeURIComponent(s.culture)}/${encodeURIComponent(s.file)}`} 
                                                 alt={s.title} 
                                                 className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                                                 onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
@@ -359,9 +313,7 @@
                     </div>
 
                     <footer className="mt-56 mb-24 text-center border-t border-[#283618]/10 pt-24 opacity-30">
-                        <p className="text-[11px] font-bold tracking-[0.6em] text-[#bc6c25] uppercase">
-                            Scientific Cynicism & Temporal Architecture - Thesis Portfolio - 2024
-                        </p>
+                        <p className="text-[11px] font-bold tracking-[0.6em] text-[#bc6c25] uppercase">Scientific Cynicism & Temporal Architecture - Thesis Portfolio - 2026</p>
                     </footer>
                 </div>
             );
